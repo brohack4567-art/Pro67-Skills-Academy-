@@ -446,19 +446,29 @@ function selectCourse(index){
  document.getElementById("tips").textContent=c.tips;
  document.getElementById("challenge").textContent=c.challenge;
  document.getElementById("checks").innerHTML=c.tasks.map((x,i)=>`
- <label><input type="checkbox" onchange="updateProgress()"> <span>${x}</span></label>
+ <label><input type="checkbox" data-task-index="${i}" onchange="updateProgress()"> <span>${x}</span></label>
  `).join("");
  renderApps();
+ restoreCourseProgress();
  updateProgress();
  document.getElementById("lesson").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+function courseProgressKey(){
+ return "brohack67-lesson01-" + courses[selected].name.toLowerCase().replace(/[^a-z0-9]+/g,"-");
+}
+function restoreCourseProgress(){
+ let saved=[];
+ try{saved=JSON.parse(localStorage.getItem(courseProgressKey())||"[]")}catch(e){}
+ document.querySelectorAll("#checks input").forEach((box,i)=>box.checked=!!saved[i]);
+}
 function updateProgress(){
- const boxes=document.querySelectorAll("#checks input");
- const done=[...boxes].filter(x=>x.checked).length;
+ const boxes=[...document.querySelectorAll("#checks input")];
+ const done=boxes.filter(x=>x.checked).length;
  const total=boxes.length;
- document.getElementById("progressBar").style.width=(done/total*100)+"%";
+ document.getElementById("progressBar").style.width=(total?done/total*100:0)+"%";
  document.getElementById("progressText").textContent=done+" of "+total+" tasks completed";
+ try{localStorage.setItem(courseProgressKey(),JSON.stringify(boxes.map(x=>x.checked)))}catch(e){}
 }
 
 renderApps();
