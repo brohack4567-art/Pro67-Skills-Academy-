@@ -223,6 +223,8 @@ a{color:inherit;text-decoration:none}
   padding:7px 11px;background:#1b293d;
   border-radius:8px;font-size:11px;color:#c6d5e9;
 }
+.start-learning-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;margin:0 0 8px;border-radius:10px;background:linear-gradient(135deg,#24c9ee,#6477ff);color:#07111e;font-size:13px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(36,201,238,.18)}
+.start-learning-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .modal-content h3{font-size:17px;margin:24px 0 12px}
 .module-list{display:grid;gap:10px}
 .module{
@@ -387,6 +389,7 @@ a{color:inherit;text-decoration:none}
     <h2 id="modalTitle"></h2>
     <p class="modal-description" id="modalDescription"></p>
     <div class="modal-meta" id="modalMeta"></div>
+    <div id="courseStartAction"></div>
 
     <h3>What You Will Learn</h3>
     <div class="module-list" id="moduleList"></div>
@@ -905,6 +908,9 @@ function openCourse(courseId) {
     "COURSE " + String(course.id).padStart(2, "0") + "  /  " + course.category;
   document.getElementById("modalTitle").textContent = course.title;
   document.getElementById("modalDescription").textContent = course.description;
+  document.getElementById("courseStartAction").innerHTML = course.id === 1
+    ? '<a class="start-learning-btn" href="lesson.html">▶ Start Learning</a>'
+    : "";
 
   const meta = document.getElementById("modalMeta");
   meta.innerHTML = "";
