@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b14">
 <title>Explore Courses | BROHACK67 Free Skills Academy</title>
-<meta name="description" content="Explore 30 free skill-building courses in video editing, graphic design, coding, AI, 3D design, music production, gaming, cybersecurity and data analysis.">
+<meta name="description" content="Explore 24 free skill-building courses in graphic design, coding, AI, 3D design, music production, gaming, cybersecurity and data analysis.">
 <style>
 :root {
   --bg:#080b14;
@@ -316,7 +316,7 @@ a{color:inherit;text-decoration:none}
       Start with the basics and keep improving every day.
     </p>
     <div class="hero-stats">
-      <div class="stat"><strong>30</strong><span>Skill Courses</span></div>
+      <div class="stat"><strong>24</strong><span>Skill Courses</span></div>
       <div class="stat"><strong>09</strong><span>Learning Categories</span></div>
       <div class="stat"><strong>100%</strong><span>Free to Explore</span></div>
     </div>
@@ -337,7 +337,7 @@ a{color:inherit;text-decoration:none}
         <h2>Explore All Courses</h2>
         <p>Choose a skill and start learning today.</p>
       </div>
-      <p id="resultCount">Showing 30 courses</p>
+      <p id="resultCount">Showing 24 courses</p>
     </div>
 
     <div class="filters" id="filters"></div>
@@ -410,72 +410,6 @@ a{color:inherit;text-decoration:none}
 
 <script>
 const courses = [
-{
- id:1,title:"Video Editing Fundamentals",category:"Video Editing",icon:"🎬",level:"Beginner",duration:"4–6 weeks",
- description:"Learn the complete video editing workflow, from importing footage to exporting polished videos.",
- modules:[
-  ["Getting Started",["Understanding video editing","Editing software and workspace","Video formats and resolutions"]],
-  ["Core Editing Skills",["Importing and organising footage","Timeline, cuts and trimming","Transitions and pacing"]],
-  ["Audio and Visuals",["Adding music and sound effects","Titles and subtitles","Basic colour correction"]],
-  ["Export and Delivery",["Export settings","YouTube and social media formats","Final editing workflow"]]
- ],
- project:"Create a 2–3 minute edited video with clean cuts, titles, music and a professional export."
-},
-{
- id:2,title:"Filmora Professional Editing",category:"Video Editing",icon:"🎞️",level:"Beginner to Intermediate",duration:"4–5 weeks",
- description:"Explore Filmora's editing tools and learn to create engaging videos with a structured workflow.",
- modules:[
-  ["Filmora Basics",["Workspace and project setup","Media import and organisation","Timeline editing"]],
-  ["Creative Editing",["Transitions and effects","Text and motion titles","Speed controls and keyframes"]],
-  ["Audio and Colour",["Audio mixing","Colour adjustment","Voice and music balance"]],
-  ["Finishing",["Export settings","Editing for different platforms","Quality control"]]
- ],
- project:"Produce a polished YouTube video with titles, transitions, balanced audio and suitable export settings."
-},
-{
- id:3,title:"DaVinci Resolve",category:"Video Editing",icon:"🎨",level:"Intermediate",duration:"6–8 weeks",
- description:"Develop editing, colour grading, audio and finishing skills using DaVinci Resolve.",
- modules:[
-  ["Resolve Foundations",["Installation and project setup","Media page","Edit page and timeline"]],
-  ["Professional Editing",["Trimming and editing tools","Transitions and titles","Multicam concepts"]],
-  ["Colour Grading",["Colour page overview","Primary correction","Creative colour looks"]],
-  ["Audio and Delivery",["Fairlight basics","Audio mixing","Render and export settings"]]
- ],
- project:"Create a short cinematic video with a consistent colour look, sound design and final delivery."
-},
-{
- id:4,title:"Adobe Premiere Pro",category:"Video Editing",icon:"📽️",level:"Intermediate",duration:"6–8 weeks",
- description:"Learn a professional editing workflow, from project organisation to final video delivery.",
- modules:[
-  ["Premiere Foundations",["Workspace and project setup","Importing media","Sequences and timeline"]],
-  ["Editing Techniques",["Trimming and precision editing","Transitions and effects","Text and graphics"]],
-  ["Professional Workflow",["Audio editing","Colour correction","Proxy workflow concepts"]],
-  ["Export",["Export panel","Codecs and formats","Final quality checks"]]
- ],
- project:"Edit a complete short video with organised media, professional pacing, titles and clean audio."
-},
-{
- id:5,title:"CapCut Video Editing",category:"Video Editing",icon:"✂️",level:"Beginner",duration:"2–4 weeks",
- description:"Learn short-form and social video editing using CapCut's creative tools.",
- modules:[
-  ["Getting Started",["Interface and project setup","Importing video clips","Timeline basics"]],
-  ["Short-Form Editing",["Cuts and pacing","Captions and text","Transitions and effects"]],
-  ["Creative Tools",["Speed changes","Keyframe concepts","Audio and sound effects"]],
-  ["Publishing",["Aspect ratios","Export quality","Final review"]]
- ],
- project:"Create three original short-form videos in different styles with captions and sound design."
-},
-{
- id:6,title:"VN Video Editor",category:"Video Editing",icon:"📱",level:"Beginner",duration:"2–4 weeks",
- description:"Build mobile editing skills using VN, including timeline editing, music, titles and colour.",
- modules:[
-  ["VN Basics",["Interface and setup","Project creation","Timeline controls"]],
-  ["Editing Skills",["Cutting and trimming","Transitions","Layering clips"]],
-  ["Creative Editing",["Text and subtitles","Music and sound effects","Colour adjustments"]],
-  ["Export",["Resolution and frame rate","Exporting projects","Reviewing the final video"]]
- ],
- project:"Create a mobile-edited cinematic montage with titles, music and consistent visual styling."
-},
 {
  id:7,title:"Canva Graphic Design",category:"Graphic Design",icon:"🖌️",level:"Beginner",duration:"3–4 weeks",
  description:"Learn design fundamentals and create social posts, presentations and visual content with Canva.",
@@ -740,6 +674,7 @@ const courses = [
  ],
  project:"Analyse a sample dataset, create clear charts and present your findings in a short report."
 }
+
 ];
 
 const categories = [
