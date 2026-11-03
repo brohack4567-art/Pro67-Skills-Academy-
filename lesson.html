@@ -122,7 +122,8 @@ header:after{content:"";position:absolute;width:280px;height:280px;border:1px so
 header h1{font-weight:850;letter-spacing:-1.5px}
 .container{max-width:1180px;padding:34px 5%}
 .section-title{font-size:25px;letter-spacing:-.5px}
-.app-grid{grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:18px}\n.duration-rule{margin-top:12px;padding:12px 14px;border:1px solid #344763;border-radius:12px;background:#111d2e;color:#c8d9ed;font-size:13px}
+.app-grid{grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:18px}
+.duration-rule{margin-top:12px;padding:12px 14px;border:1px solid #344763;border-radius:12px;background:#111d2e;color:#c8d9ed;font-size:13px}
 .app{padding:18px;background:linear-gradient(145deg,#131e30,#0d1523);border-radius:16px;min-height:112px}
 .app h3{font-size:17px}
 .lesson{margin-top:28px;padding:clamp(18px,3vw,32px);background:linear-gradient(145deg,#111c2d,#0c1421);border-radius:22px;box-shadow:0 22px 70px #0005}
@@ -164,7 +165,8 @@ button{font:inherit}
 .video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-note{padding:12px 15px;color:#aebed3;font-size:12px}
-\n</style>
+
+</style>
 </head>
 <body>
 
@@ -178,7 +180,7 @@ button{font:inherit}
 <main class="container">
  <h2 class="section-title">Your Learning Path</h2>
  <p style="color:var(--muted)">Choose your editing software and start learning step by step.</p>
- <p class="duration-rule">⏱ Learning rule: each lesson is 20–60 minutes maximum. Most sessions aim for 30–45 minutes, followed by hands-on practice.</p>
+ <p class="duration-rule">⏱ Learning rule: each learning session is capped at 60 minutes. Longer videos are divided into shorter chapters/sessions, followed by hands-on practice.</p>
 
  <div class="app-grid" id="apps"></div>
 
@@ -261,7 +263,7 @@ button{font:inherit}
 <script>
 const courses=[
 {
- name:"CapCut", video:"PLeQ-jUq_K75I7Jc7QSwyhcPqy5KR6u6j8", videoType:"playlist", screenshot:"https://www.capcut.com/resource/capcut-desktop-download", image:"https://images.wondershare.com/filmora/article-images/capcut-filmora-10.png", shot:"CapCut effects and editing panels; desktop layout shown in this reference.", yt:"CapCut video editing tutorial for beginners Hindi", official:"https://www.capcut.com/resource/capcut-tutorial-for-beginners",type:"Mobile Editing",icon:"01",
+ name:"CapCut", video:"cSzlJ9vuQvw", screenshot:"https://www.capcut.com/resource/capcut-desktop-download", image:"https://images.wondershare.com/filmora/article-images/capcut-filmora-10.png", shot:"CapCut effects and editing panels; desktop layout shown in this reference.", yt:"CapCut video editing tutorial for beginners Hindi", official:"https://www.capcut.com/resource/capcut-tutorial-for-beginners",type:"Mobile Editing",icon:"01",
  desc:"Learn the fundamentals of mobile video editing using CapCut. Build clean, engaging videos from raw clips.",
  preview:"CREATE YOUR STORY",
  goals:["Understand the editing workspace","Import and arrange video clips","Add text, transitions and music","Export a finished video"],
@@ -279,7 +281,7 @@ const courses=[
  tasks:["Import three video clips","Trim and arrange the clips","Add a title and music","Export your video"]
 },
 {
- name:"KineMaster", video:"", screenshot:"https://kinemaster.com/features", image:"https://cdn.mos.cms.futurecdn.net/FKLStPZub9o25YvCaugqNj-970-80.jpg", shot:"KineMaster mobile timeline and audio mixer interface.", yt:"KineMaster complete video editing tutorial Hindi", official:"https://kinemaster.com/features",type:"Mobile Editing",icon:"02",
+ name:"KineMaster", video:"_8WA5xlV3fo", screenshot:"https://kinemaster.com/features", image:"https://cdn.mos.cms.futurecdn.net/FKLStPZub9o25YvCaugqNj-970-80.jpg", shot:"KineMaster mobile timeline and audio mixer interface.", yt:"KineMaster complete video editing tutorial Hindi", official:"https://kinemaster.com/features",type:"Mobile Editing",icon:"02",
  desc:"Explore a multi-layer editing workflow and learn how to build organized mobile video projects.",
  preview:"MULTI-LAYER EDITING",
  goals:["Understand the timeline","Work with multiple layers","Use chroma key and keyframes","Manage audio and export"],
@@ -297,7 +299,7 @@ const courses=[
  tasks:["Create a new project","Add an extra layer","Animate a title","Export the intro"]
 },
 {
- name:"Alight Motion", video:"", screenshot:"https://apps.apple.com/in/app/alight-motion/id1459833443", image:"https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/cd/37/0f/cd370f4e-d294-d602-02e3-883dc70cb8a7/0dcd6f63-1872-445b-a261-11f4b3ea2c53_iPad_12.9_2_screenshot02.png/552x414bb.png", shot:"Alight Motion layer timeline, preview and color/effects controls.", yt:"Alight Motion official getting started tutorial", official:"https://support.alightmotion.com/hc/en-us/articles/10536777320337-Alight-Motion-Quick-Start-Guide",type:"Motion Graphics",icon:"03",
+ name:"Alight Motion", video:"JUDdyfYWweE", screenshot:"https://apps.apple.com/in/app/alight-motion/id1459833443", image:"https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/cd/37/0f/cd370f4e-d294-d602-02e3-883dc70cb8a7/0dcd6f63-1872-445b-a261-11f4b3ea2c53_iPad_12.9_2_screenshot02.png/552x414bb.png", shot:"Alight Motion layer timeline, preview and color/effects controls.", yt:"Alight Motion official getting started tutorial", official:"https://support.alightmotion.com/hc/en-us/articles/10536777320337-Alight-Motion-Quick-Start-Guide",type:"Motion Graphics",icon:"03",
  desc:"Learn motion design basics, shape animation and keyframe-based movement.",
  preview:"MOTION DESIGN LAB",
  goals:["Understand layers and objects","Learn keyframe animation","Animate shapes and text","Explore visual effects"],
@@ -315,7 +317,7 @@ const courses=[
  tasks:["Create a project","Add a text layer","Set two keyframes","Export the animation"]
 },
 {
- name:"Node Video", video:"", screenshot:"https://node-video.en.softonic.com/android", image:"https://images.sftcdn.net/images/t_app-cover-l%2Cf_auto/p/ca62dd49-21da-4e0e-9f76-4eb1ca0e8e5f/2057844468/node-video-screenshot.png", shot:"Node Video inspector, color curve and layered timeline interface.", yt:"Node Video editing tutorial Android beginner", official:"https://nodevideo.com/",type:"Advanced Mobile Editing",icon:"04",
+ name:"Node Video", video:"aUoYQHutvWg", screenshot:"https://node-video.en.softonic.com/android", image:"https://images.sftcdn.net/images/t_app-cover-l%2Cf_auto/p/ca62dd49-21da-4e0e-9f76-4eb1ca0e8e5f/2057844468/node-video-screenshot.png", shot:"Node Video inspector, color curve and layered timeline interface.", yt:"Node Video editing tutorial Android beginner", official:"https://nodevideo.com/",type:"Advanced Mobile Editing",icon:"04",
  desc:"Explore a node-based creative workflow and understand how visual effects can be connected.",
  preview:"NODE WORKFLOW",
  goals:["Understand the node workspace","Learn layer organization","Explore effects and connections","Build a simple visual composition"],
@@ -333,7 +335,7 @@ const courses=[
  tasks:["Import footage","Explore effect controls","Apply one effect","Export a test"]
 },
 {
- name:"Filmora PC", video:"", screenshot:"https://filmora.wondershare.com/guide-get-started/", image:"https://images.wondershare.com/filmora/article-images/business-animation-video-maker-05.jpg", shot:"Wondershare Filmora editing workspace with preview, tools and timeline.", yt:"Filmora complete video editing course Hindi", official:"https://filmora.wondershare.com/guide-get-started/",type:"Desktop Editing",icon:"05",
+ name:"Filmora PC", video:"6In1_hAb8CU", screenshot:"https://filmora.wondershare.com/guide-get-started/", image:"https://images.wondershare.com/filmora/article-images/business-animation-video-maker-05.jpg", shot:"Wondershare Filmora editing workspace with preview, tools and timeline.", yt:"Filmora complete video editing course Hindi", official:"https://filmora.wondershare.com/guide-get-started/",type:"Desktop Editing",icon:"05",
  desc:"Move into desktop editing with timeline organization, titles, audio and professional export basics.",
  preview:"DESKTOP VIDEO EDITING",
  goals:["Understand the desktop workspace","Manage media and timeline tracks","Add titles and audio","Export a finished project"],
@@ -351,7 +353,7 @@ const courses=[
  tasks:["Import media","Arrange timeline clips","Add titles and music","Export the final edit"]
 },
 {
- name:"DaVinci Resolve", video:"LKYcLmF0akc", screenshot:"https://www.blackmagicdesign.com/products/davinciresolve", image:"https://framerusercontent.com/images/ye8ptmgixzoUZiR7fsYQSLYvomU.jpg?height=2834&width=5120", shot:"DaVinci Resolve Edit page with multi-track timeline, viewer and inspector.", yt:"DaVinci Resolve beginner tutorial Hindi complete course", official:"https://www.blackmagicdesign.com/products/davinciresolve/training",type:"Professional Editing",icon:"06",
+ name:"DaVinci Resolve", video:"pBjW4xlMPTs", screenshot:"https://www.blackmagicdesign.com/products/davinciresolve", image:"https://framerusercontent.com/images/ye8ptmgixzoUZiR7fsYQSLYvomU.jpg?height=2834&width=5120", shot:"DaVinci Resolve Edit page with multi-track timeline, viewer and inspector.", yt:"DaVinci Resolve beginner tutorial Hindi complete course", official:"https://www.blackmagicdesign.com/products/davinciresolve/training",type:"Professional Editing",icon:"06",
  desc:"Explore a professional post-production workflow covering editing, color, audio and delivery.",
  preview:"PROFESSIONAL POST",
  goals:["Understand the main workspace pages","Edit footage on the timeline","Learn basic color correction","Prepare final delivery"],
@@ -392,7 +394,15 @@ function selectCourse(index){
  shot.src=c.image;
  shot.alt=c.name+" editing interface screenshot";
  document.getElementById("shotCaption").textContent=c.shot;
- const searchUrl="https://www.youtube.com/results?search_query="+encodeURIComponent(c.yt+" Hindi beginner course playlist");\n const ytLink=document.getElementById("youtubeLink");\n ytLink.href=c.video ? (c.videoType==="playlist" ? "https://www.youtube.com/playlist?list="+c.video : "https://www.youtube.com/watch?v="+c.video) : searchUrl;\n ytLink.textContent=c.video ? "▶ Open curated YouTube lesson" : "▶ Find Hindi lessons on YouTube";\n const player=document.getElementById("lessonVideo");\n const playerWrap=document.querySelector(".video-learning");\n if(c.video){player.src="https://www.youtube-nocookie.com/"+(c.videoType==="playlist" ? "embed/videoseries?list="+c.video : "embed/"+c.video)+"?rel=0"; player.title=c.name+" learning video"; playerWrap.style.display="block";}\n else {player.src=""; playerWrap.style.display="none";}\n document.getElementById("videoHeading").textContent="▶ "+c.name+" — Recommended Hindi learning";
+ const ytLink=document.getElementById("youtubeLink");
+ ytLink.href="https://www.youtube.com/watch?v="+c.video;
+ ytLink.textContent="▶ Watch verified YouTube tutorial";
+ const player=document.getElementById("lessonVideo");
+ const playerWrap=document.querySelector(".video-learning");
+ player.src="https://www.youtube-nocookie.com/embed/"+c.video+"?rel=0";
+ player.title=c.name+" Hindi beginner tutorial";
+ playerWrap.style.display="block";
+ document.getElementById("videoHeading").textContent="▶ "+c.name+" — Verified tutorial";
  document.getElementById("officialLink").href=c.official;
  document.getElementById("officialLink").textContent="↗ Official "+c.name+" guide";
  document.getElementById("previewText").textContent=c.preview;
