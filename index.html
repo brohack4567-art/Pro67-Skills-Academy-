@@ -1,18 +1,727 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BROHACK67 Skills Academy</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="container"><nav><a class="logo" href="#">BROHACK<span>67</span></a><div class="nav-links"><a href="#courses">Courses</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav></div></header>
-<main class="container">
-<section class="hero"><h1>Learn <span class="gradient">Any Digital Skill</span></h1><p>Free courses for everyone.</p><div class="buttons"><a class="btn" href="#courses">Start Learning</a></div></section>
-<section id="courses"><h2>Course Categories</h2><div class="grid">
-<div class="card"><div class="icon">💻</div><h3>Programming</h3></div>
-<div class="card"><div class="icon">🎨</div><h3>Graphic Design</h3></div>
-<div class="card"><div class="icon">🎬</div><h3>Video Editing</h3></div>
-<div class="card"><div class="icon">🤖</div><h3>AI Tools</h3></div>
-<div class="card"><div class="icon">🔒</div><h3>Cybersecurity</h3></div>
-<div class="card"><div class="icon">🧊</div><h3>3D Design</h3></div>
-<div class="card"><div class="icon">🎮</div><h3>Game Development</h3></div>
-<div class="card"><div class="icon">📈</div><h3>Digital Marketing</h3></div>
-</div></section>
-<section id="about"><div class="about-box"><h2>About</h2><p>BROHACK67 Skills Academy helps everyone learn modern digital and creative skills through free lessons and projects.</p></div></section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BROHACK67 | Free Skills Academy</title>
+
+<meta name="description" content="Learn programming, video editing, graphic design, AI, cybersecurity, 3D design and more with BROHACK67 Free Skills Academy.">
+
+<style>
+:root {
+  --bg: #080d19;
+  --panel: #111b2e;
+  --panel-hover: #17253d;
+  --cyan: #43e5f5;
+  --purple: #a78bfa;
+  --white: #f5f7ff;
+  --muted: #a6b5ca;
+  --border: #273650;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 80% 0%, #20224a 0%, transparent 35%),
+    radial-gradient(ellipse at 0% 35%, #102c3c 0%, transparent 30%),
+    var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin: auto;
+}
+
+/* NAVBAR */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,13,25,.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: var(--cyan);
+}
+
+/* HERO */
+
+.hero {
+  min-height: 570px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(43px, 8vw, 82px);
+  line-height: 1.12;
+  margin: 20px 0;
+  max-width: 950px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero-description {
+  color: var(--muted);
+  max-width: 700px;
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 9px;
+  background: linear-gradient(100deg, var(--cyan), var(--purple));
+  color: #07101b;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px #43e5f533;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+}
+
+/* COMMON SECTIONS */
+
+section {
+  padding: 70px 0;
+}
+
+.section-heading {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 10px;
+}
+
+.section-description {
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+/* ACADEMY INTRO */
+
+.intro-box {
+  margin-top: 25px;
+  padding: 32px;
+  background: linear-gradient(130deg, #111d32, #17182f);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(var(--cyan), var(--purple));
+}
+
+.intro-box h3 {
+  font-size: 21px;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+
+.intro-box p {
+  color: #c3d1e5;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COURSE GRID */
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.course-card {
+  background: linear-gradient(145deg, var(--panel), #0c1424);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: .3s;
+  min-height: 370px;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  background: var(--panel-hover);
+  border-color: var(--cyan);
+  box-shadow: 0 12px 35px #0005;
+}
+
+.course-icon {
+  font-size: 37px;
+  margin-bottom: 14px;
+}
+
+.course-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.course-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.85;
+  flex-grow: 1;
+}
+
+.course-link {
+  display: inline-block;
+  color: var(--cyan);
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 22px;
+}
+
+/* FEATURES */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.feature-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 15px;
+}
+
+.feature-card h3 {
+  margin-bottom: 9px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ABOUT */
+
+.about-box {
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: linear-gradient(120deg, #122a3e, #211b3e);
+}
+
+.about-box h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 12px 0;
+}
+
+.about-box p {
+  color: #c5d3e7;
+  max-width: 850px;
+  line-height: 1.9;
+}
+
+/* CTA */
+
+.cta {
+  text-align: center;
+  padding: 60px 25px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(120deg, #132b40, #211b3e);
+}
+
+.cta h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 12px;
+}
+
+.cta p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+/* FOOTER */
+
+footer {
+  margin-top: 50px;
+  padding: 35px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-content strong {
+  color: var(--white);
+}
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 0;
+  }
+
+  .nav-links {
+    gap: 17px;
+  }
+
+  .hero {
+    min-height: 480px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 48px 0;
+  }
+
+  .intro-box,
+  .about-box {
+    padding: 24px;
+  }
+
+  .course-card {
+    min-height: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">BROHACK<span>67</span></a>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO SECTION -->
+<section class="hero container" id="home">
+
+  <div class="eyebrow">BROHACK67 FREE SKILLS ACADEMY</div>
+
+  <h1>
+    Learn Skills.<br>
+    <span class="gradient">Build Your Future.</span>
+  </h1>
+
+  <p class="hero-description">
+    Discover the world of digital creativity and technology.
+    Learn practical skills, explore new opportunities and
+    transform your ideas into meaningful projects.
+    Quality learning should be accessible to everyone.
+  </p>
+
+  <div class="buttons">
+    <a href="#courses" class="btn">Explore All Courses →</a>
+    <a href="#about" class="btn btn-outline">About Academy</a>
+  </div>
+
+</section>
+
+<!-- COURSES SECTION -->
+<section id="courses">
+<div class="container">
+
+  <div class="eyebrow">LEARN SOMETHING NEW</div>
+
+  <h2 class="section-heading">Explore Our Courses</h2>
+
+  <p class="section-description">
+    Discover skills that can help you create, innovate and build your career.
+  </p>
+
+  <!-- 78-WORD ACADEMY INFORMATION -->
+  <div class="intro-box">
+
+    <h3>Learn Today. Create Tomorrow. Build Beyond Limits.</h3>
+
+    <p>
+      BROHACK67 Free Skills Academy is a digital learning platform
+      created to make modern education accessible to everyone.
+      Discover practical courses in video editing, graphic design,
+      programming, artificial intelligence, cybersecurity, 3D animation,
+      game development and digital marketing. Start with essential
+      concepts, develop advanced techniques and apply your knowledge
+      through creative assignments and real-world projects. Explore
+      new technologies, strengthen your problem-solving abilities
+      and transform your curiosity into valuable skills. Learn at
+      your own pace, experiment with ideas and keep improving.
+    </p>
+
+  </div>
+
+  <!-- ALL EIGHT COURSES -->
+  <div class="course-grid">
+
+    <!-- PROGRAMMING -->
+    <div class="course-card">
+      <div class="course-icon">💻</div>
+      <h3>Programming & Development</h3>
+
+      <p>
+        Learn programming languages, problem-solving, websites,
+        applications and software development. These skills are
+        useful for building websites, mobile apps, automation tools
+        and digital products. Earning opportunities include freelance
+        projects, internships, software development careers and
+        creating your own applications or digital services.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- GRAPHIC DESIGN -->
+    <div class="course-card">
+      <div class="course-icon">🎨</div>
+      <h3>Graphic Design</h3>
+
+      <p>
+        Learn visual communication, typography, colour theory,
+        layouts, branding and professional design tools. Graphic
+        design is used for business logos, advertisements, social
+        media posts, posters and product packaging. Earning
+        opportunities include freelance design projects, agency
+        work, brand collaborations and selling original digital designs.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- VIDEO EDITING -->
+    <div class="course-card">
+      <div class="course-icon">🎬</div>
+      <h3>Video Editing</h3>
+
+      <p>
+        Learn professional editing, transitions, storytelling,
+        colour grading, sound design and visual effects. Video
+        editing is useful for YouTube videos, films, advertisements,
+        social media reels and business promotions. Earning
+        opportunities include freelance editing, creator partnerships,
+        agency projects and working with content production teams.
+      </p>
+
+      <a href="video-editing.html" class="course-link">Start Learning →</a>
+    </div>
+
+    <!-- AI -->
+    <div class="course-card">
+      <div class="course-icon">🤖</div>
+      <h3>AI Tools & Creativity</h3>
+
+      <p>
+        Understand artificial intelligence, effective prompting,
+        AI research tools and creative workflows. These technologies
+        help with writing, designing, research, productivity and
+        content creation. Earning opportunities may include AI-assisted
+        creative services, workflow consulting, digital products
+        and helping businesses use AI responsibly.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- CYBERSECURITY -->
+    <div class="course-card">
+      <div class="course-icon">🔒</div>
+      <h3>Cybersecurity</h3>
+
+      <p>
+        Learn digital security, networking, privacy protection,
+        secure systems and ethical cybersecurity principles.
+        These skills help protect websites, computers, accounts
+        and business information. Career opportunities include
+        security analysis, authorised penetration testing,
+        security support and IT roles. Always practise legally
+        with systems you have permission to test.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- 3D DESIGN -->
+    <div class="course-card">
+      <div class="course-icon">🧊</div>
+      <h3>3D Design & Animation</h3>
+
+      <p>
+        Explore 3D modelling, texturing, lighting, rendering and
+        animation using creative software such as Blender. These
+        skills are useful in games, films, product visualisation,
+        architecture and advertisements. Earning opportunities
+        include freelance 3D modelling, animation projects,
+        studio work and selling original 3D assets online.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- GAME DEVELOPMENT -->
+    <div class="course-card">
+      <div class="course-icon">🎮</div>
+      <h3>Game Development</h3>
+
+      <p>
+        Learn game design, programming, level creation, character
+        development, animation and interactive storytelling.
+        Game development skills are used to create mobile games,
+        PC games, simulations and interactive experiences.
+        Earning opportunities include game studio careers,
+        freelance development, publishing original games
+        and selling permitted game assets.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+    <!-- DIGITAL MARKETING -->
+    <div class="course-card">
+      <div class="course-icon">📈</div>
+      <h3>Digital Marketing</h3>
+
+      <p>
+        Learn social media strategy, search engine optimisation,
+        content marketing, advertising and audience research.
+        These skills help businesses promote products, reach
+        customers and build their online presence. Earning
+        opportunities include social media management, marketing
+        agency work, freelance campaigns and digital marketing services.
+      </p>
+
+      <a href="courses.html" class="course-link">Explore Course →</a>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+<div class="container">
+
+  <div class="eyebrow">THE LEARNING EXPERIENCE</div>
+
+  <h2 class="section-heading">Why Learn With Us?</h2>
+
+  <p class="section-description">
+    Practical education designed to help learners grow their abilities.
+  </p>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <h3>🆓 Free Learning</h3>
+      <p>
+        Explore educational resources and develop useful skills
+        without expensive course fees.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📚 Structured Lessons</h3>
+      <p>
+        Understand topics through organised lessons, explanations
+        and step-by-step learning paths.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🛠️ Practical Projects</h3>
+      <p>
+        Apply what you learn through assignments, creative
+        activities and personal projects.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🌍 Learn Anywhere</h3>
+      <p>
+        Access the academy from your phone, tablet or computer
+        whenever you want to learn.
+      </p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+
+  <div class="about-box">
+
+    <div class="eyebrow">ABOUT BROHACK67</div>
+
+    <h2>Knowledge Should Have No Limits.</h2>
+
+    <p>
+      BROHACK67 Free Skills Academy is an educational initiative
+      focused on making digital and creative learning accessible
+      to everyone. Our mission is to introduce learners to modern
+      technologies, practical tools and creative disciplines.
+      Through structured lessons, useful resources and hands-on
+      projects, we aim to help learners discover their interests,
+      develop confidence and build skills for future opportunities.
+      We believe curiosity is the beginning of every great achievement.
+    </p>
+
+  </div>
+
+</div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section>
+<div class="container">
+
+  <div class="cta">
+
+    <div class="eyebrow">YOUR JOURNEY STARTS HERE</div>
+
+    <h2>Ready to Learn Something New?</h2>
+
+    <p>
+      Choose a skill, explore new possibilities and start creating.
+    </p>
+
+    <a href="#courses" class="btn">Start Exploring →</a>
+
+  </div>
+
+</div>
+</section>
+
 </main>
-<footer id="contact"><p>© 2026 BROHACK67 Skills Academy</p></footer>
-</body></html>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-content">
+
+  <div>
+    <strong>BROHACK67 FREE SKILLS ACADEMY</strong>
+    <p>Learn. Create. Improve. Repeat.</p>
+  </div>
+
+  <div>
+    <p>© 2026 BROHACK67 Academy</p>
+    <p>Free Learning. Unlimited Possibilities.</p>
+  </div>
+
+</div>
+</footer>
+
+</body>
+</html>
