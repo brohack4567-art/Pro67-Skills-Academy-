@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Video Editing Journey | BROHACK67</title>
+<style>
+:root{
+ --bg:#070b16;--panel:#10182a;--panel2:#151f35;
+ --cyan:#00e5ff;--purple:#925cff;--text:#f2f6ff;
+ --muted:#9baac4;--border:#26334c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ background:var(--bg);color:var(--text);
+ font-family:Arial,sans-serif;line-height:1.6;
+}
+header{
+ padding:24px 6%;background:linear-gradient(120deg,#101b36,#20123b);
+ border-bottom:1px solid var(--border);
+}
+.brand{color:var(--cyan);font-weight:900;letter-spacing:2px}
+header h1{font-size:clamp(27px,5vw,44px);margin-top:12px}
+header p{color:var(--muted);margin-top:5px}
+.container{max-width:1150px;margin:auto;padding:28px 5%}
+.section-title{font-size:23px;margin:28px 0 15px}
+.app-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+ gap:12px;
+}
+.app{
+ padding:17px 12px;background:var(--panel);
+ border:1px solid var(--border);border-radius:14px;
+ color:var(--text);cursor:pointer;text-align:left;
+ transition:.2s;
+}
+.app:hover,.app.active{
+ border-color:var(--cyan);background:#10263a;
+ transform:translateY(-2px);
+}
+.app .number{color:var(--cyan);font-size:12px;font-weight:bold}
+.app h3{font-size:16px;margin-top:7px}
+.app small{color:var(--muted)}
+.lesson{
+ margin-top:24px;padding:22px;background:var(--panel);
+ border:1px solid var(--border);border-radius:18px;
+}
+.lesson h2{font-size:26px}
+.tag{
+ display:inline-block;padding:4px 10px;margin:8px 0;
+ background:#162d43;color:var(--cyan);border-radius:20px;
+ font-size:12px;
+}
+.mock{
+ margin:22px 0;background:#090e19;border:1px solid #34415c;
+ border-radius:13px;overflow:hidden;
+}
+.mock-top{
+ padding:10px 14px;background:#172238;
+ display:flex;justify-content:space-between;gap:8px;
+ font-size:12px;color:#dbeaff;
+}
+.mock-body{display:grid;grid-template-columns:75px 1fr;min-height:190px}
+.tools{background:#111a2c;padding:12px 5px}
+.tool{
+ background:#202d43;padding:7px 3px;margin-bottom:7px;
+ text-align:center;border-radius:6px;font-size:10px;color:#b8c8e4;
+}
+.preview{
+ padding:15px;display:flex;flex-direction:column;
+ justify-content:center;align-items:center;
+ background:radial-gradient(circle,#263a5e,#0b1221);
+}
+.preview-screen{
+ width:min(100%,330px);aspect-ratio:16/9;
+ border:2px solid #607ca7;border-radius:5px;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:12px;
+ background:linear-gradient(135deg,#172b50,#38235b);
+ font-weight:bold;font-size:18px;
+}
+.timeline{padding:12px;background:#111a2b}
+.track{
+ height:25px;margin:7px 0;border-radius:5px;
+ background:linear-gradient(90deg,#087e9c,#2450a4,#6940a0);
+ font-size:10px;padding:3px 8px;overflow:hidden;
+ white-space:nowrap;
+}
+.track.audio{background:linear-gradient(90deg,#276d50,#32aa76)}
+.content{margin-top:20px}
+.content h3{color:var(--cyan);margin:18px 0 7px}
+.content p,.content li{color:#c2cde0}
+.content ul,.content ol{padding-left:22px}
+.content li{margin:6px 0}
+.tip{
+ margin-top:18px;padding:14px;border-left:3px solid var(--purple);
+ background:#17142b;border-radius:6px;
+}
+.task{
+ margin-top:15px;padding:16px;background:#102a2b;
+ border:1px solid #176c65;border-radius:10px;
+}
+.task label{display:flex;gap:9px;align-items:flex-start;margin-top:9px}
+.task input{margin-top:5px;accent-color:var(--cyan)}
+.progress{
+ height:7px;background:#26334c;border-radius:10px;margin-top:10px;
+ overflow:hidden;
+}
+.progress span{display:block;height:100%;width:0;background:var(--cyan);transition:.3s}
+footer{
+ text-align:center;padding:28px;color:var(--muted);
+ border-top:1px solid var(--border);margin-top:40px;
+}
+button{font:inherit}
+@media(max-width:600px){
+ .container{padding:20px 4%}
+ .lesson{padding:16px}
+ .mock-body{grid-template-columns:62px 1fr}
+ .tools{padding:8px 3px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="brand">BROHACK67 FREE SKILLS ACADEMY</div>
+ <h1>Complete Video Editing Journey</h1>
+ <p>From Mobile Editing to Professional PC Editing</p>
+ <p>Learn. Create. Improve. Repeat.</p>
+</header>
+
+<main class="container">
+ <h2 class="section-title">Your Learning Path</h2>
+ <p style="color:var(--muted)">Choose your editing software and start learning step by step.</p>
+
+ <div class="app-grid" id="apps"></div>
+
+ <section class="lesson" id="lesson">
+  <span class="tag">LESSON 01</span>
+  <h2 id="title">CapCut Editing Fundamentals</h2>
+  <p id="description" style="color:var(--muted);margin-top:7px"></p>
+
+  <div class="mock">
+   <div class="mock-top">
+    <span id="mockName">CAPCUT • EDITING WORKSPACE</span>
+    <span>PREVIEW ●</span>
+   </div>
+   <div class="mock-body">
+    <div class="tools">
+     <div class="tool">Media</div>
+     <div class="tool">Audio</div>
+     <div class="tool">Text</div>
+     <div class="tool">Effects</div>
+     <div class="tool">Adjust</div>
+    </div>
+    <div class="preview">
+     <div class="preview-screen" id="previewText">
+      YOUR CREATIVE VISION
+     </div>
+    </div>
+   </div>
+   <div class="timeline">
+    <small style="color:#9baac4">TIMELINE • VIDEO TRACKS</small>
+    <div class="track">VIDEO CLIP 01 — MAIN FOOTAGE</div>
+    <div class="track" style="background:linear-gradient(90deg,#6843a4,#a34eaa)">TEXT / TITLE LAYER</div>
+    <div class="track audio">AUDIO / BACKGROUND MUSIC</div>
+   </div>
+  </div>
+  <small style="color:var(--muted)">Illustrative editing workspace — actual app interface may look different.</small>
+
+  <div class="content">
+   <h3>What You Will Learn</h3>
+   <ul id="objectives"></ul>
+
+   <h3>Step-by-Step Tutorial</h3>
+   <ol id="steps"></ol>
+
+   <h3>Pro Tips</h3>
+   <div class="tip" id="tips"></div>
+
+   <div class="task">
+    <h3 style="color:#6fffd0;margin:0">Your Practical Challenge</h3>
+    <p id="challenge" style="margin-top:6px"></p>
+    <div id="checks"></div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <small id="progressText" style="color:#9baac4">0 tasks completed</small>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="brand">BROHACK67</div>
+<p>Learn. Create. Improve. Repeat.</p>
+<p>Free Skills Academy • Keep Creating.</p>
+</footer>
+
+<script>
+const courses=[
+{
+ name:"CapCut",type:"Mobile Editing",icon:"01",
+ desc:"Learn the fundamentals of mobile video editing using CapCut. Build clean, engaging videos from raw clips.",
+ preview:"CREATE YOUR STORY",
+ goals:["Understand the editing workspace","Import and arrange video clips","Add text, transitions and music","Export a finished video"],
+ steps:[
+ "Open CapCut and create a new project.",
+ "Select your video clips and import them into the timeline.",
+ "Trim unwanted portions and arrange clips in the correct order.",
+ "Add text titles and adjust their position and duration.",
+ "Explore transitions and use them where they improve the flow.",
+ "Add background music and balance its volume.",
+ "Preview your complete edit and export using suitable settings."
+ ],
+ tips:"Keep transitions simple. Match your cuts with the rhythm of the music. Always preview your video before exporting.",
+ challenge:"Create a 30-second cinematic video using at least three clips, a title and background music.",
+ tasks:["Import three video clips","Trim and arrange the clips","Add a title and music","Export your video"]
+},
+{
+ name:"KineMaster",type:"Mobile Editing",icon:"02",
+ desc:"Explore a multi-layer editing workflow and learn how to build organized mobile video projects.",
+ preview:"MULTI-LAYER EDITING",
+ goals:["Understand the timeline","Work with multiple layers","Use chroma key and keyframes","Manage audio and export"],
+ steps:[
+ "Create a new project and choose the aspect ratio.",
+ "Import your main footage into the timeline.",
+ "Use the Layer option to add text, images or additional video.",
+ "Adjust each layer's size, position and duration.",
+ "Explore keyframes to animate an object's movement.",
+ "Use chroma key only when you have suitable green-screen footage.",
+ "Add audio, preview the project and export."
+ ],
+ tips:"Name and organize your project assets. Avoid adding too many effects to one scene.",
+ challenge:"Create a short intro with a background video, animated title and music.",
+ tasks:["Create a new project","Add an extra layer","Animate a title","Export the intro"]
+},
+{
+ name:"Alight Motion",type:"Motion Graphics",icon:"03",
+ desc:"Learn motion design basics, shape animation and keyframe-based movement.",
+ preview:"MOTION DESIGN LAB",
+ goals:["Understand layers and objects","Learn keyframe animation","Animate shapes and text","Explore visual effects"],
+ steps:[
+ "Create a project and select your canvas dimensions.",
+ "Add a shape or text layer.",
+ "Place the playhead at the starting point and set the initial position.",
+ "Move the playhead forward and change the object's position.",
+ "Use keyframes to create movement between those points.",
+ "Adjust easing to make the movement feel smoother.",
+ "Preview the animation and export your result."
+ ],
+ tips:"Smooth animation is about timing. Experiment with easing and avoid unnecessary movement.",
+ challenge:"Make a 5-second animated title with moving text and at least two keyframes.",
+ tasks:["Create a project","Add a text layer","Set two keyframes","Export the animation"]
+},
+{
+ name:"Node Video",type:"Advanced Mobile Editing",icon:"04",
+ desc:"Explore a node-based creative workflow and understand how visual effects can be connected.",
+ preview:"NODE WORKFLOW",
+ goals:["Understand the node workspace","Learn layer organization","Explore effects and connections","Build a simple visual composition"],
+ steps:[
+ "Open a new project and import your footage.",
+ "Explore the timeline and available editing panels.",
+ "Identify the nodes or effect controls available in your version.",
+ "Add a basic visual effect to your footage.",
+ "Adjust effect parameters gradually and preview changes.",
+ "Keep your layers and effects organized.",
+ "Export a short test before completing the full project."
+ ],
+ tips:"Change one parameter at a time. This makes it easier to understand what each effect does.",
+ challenge:"Create a short visual edit using footage, one effect and a clear title.",
+ tasks:["Import footage","Explore effect controls","Apply one effect","Export a test"]
+},
+{
+ name:"Filmora PC",type:"Desktop Editing",icon:"05",
+ desc:"Move into desktop editing with timeline organization, titles, audio and professional export basics.",
+ preview:"DESKTOP VIDEO EDITING",
+ goals:["Understand the desktop workspace","Manage media and timeline tracks","Add titles and audio","Export a finished project"],
+ steps:[
+ "Launch Filmora and create a new project.",
+ "Import media using the media panel.",
+ "Drag your footage onto the timeline.",
+ "Split, trim and arrange clips.",
+ "Add titles, transitions and effects carefully.",
+ "Use audio controls to balance music and video sound.",
+ "Choose an export format and review the final file."
+ ],
+ tips:"Save your project regularly. Keep source footage in organized folders so your project remains easy to manage.",
+ challenge:"Edit a 45-second video with multiple clips, titles, transitions and balanced audio.",
+ tasks:["Import media","Arrange timeline clips","Add titles and music","Export the final edit"]
+},
+{
+ name:"DaVinci Resolve",type:"Professional Editing",icon:"06",
+ desc:"Explore a professional post-production workflow covering editing, color, audio and delivery.",
+ preview:"PROFESSIONAL POST",
+ goals:["Understand the main workspace pages","Edit footage on the timeline","Learn basic color correction","Prepare final delivery"],
+ steps:[
+ "Create a project and import your media.",
+ "Explore the Media and Edit pages.",
+ "Place clips on the timeline and refine the sequence.",
+ "Open the Color page and explore basic correction controls.",
+ "Use the Fairlight page to understand audio levels and mixing.",
+ "Review the complete video and check for unwanted gaps.",
+ "Use the Deliver page to prepare your export."
+ ],
+ tips:"Learn one page at a time. Color correction and audio mixing both improve with careful practice.",
+ challenge:"Create a 60-second video with clean cuts, basic color correction and balanced audio.",
+ tasks:["Import and organize media","Build an edit timeline","Try basic color correction","Export the video"]
+}
+];
+
+let selected=0;
+
+function renderApps(){
+ const box=document.getElementById("apps");
+ box.innerHTML=courses.map((c,i)=>`
+ <button class="app ${i===selected?'active':''}" onclick="selectCourse(${i})">
+ <span class="number">LESSON ${c.icon}</span>
+ <h3>${c.name}</h3>
+ <small>${c.type}</small>
+ </button>`).join("");
+}
+
+function selectCourse(index){
+ selected=index;
+ const c=courses[index];
+ document.getElementById("title").textContent=c.name+" — Editing Fundamentals";
+ document.getElementById("description").textContent=c.desc;
+ document.getElementById("mockName").textContent=c.name.toUpperCase()+" • EDITING WORKSPACE";
+ document.getElementById("previewText").textContent=c.preview;
+ document.getElementById("objectives").innerHTML=c.goals.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("steps").innerHTML=c.steps.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("tips").textContent=c.tips;
+ document.getElementById("challenge").textContent=c.challenge;
+ document.getElementById("checks").innerHTML=c.tasks.map((x,i)=>`
+ <label><input type="checkbox" onchange="updateProgress()"> <span>${x}</span></label>
+ `).join("");
+ renderApps();
+ updateProgress();
+ document.getElementById("lesson").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function updateProgress(){
+ const boxes=document.querySelectorAll("#checks input");
+ const done=[...boxes].filter(x=>x.checked).length;
+ const total=boxes.length;
+ document.getElementById("progressBar").style.width=(done/total*100)+"%";
+ document.getElementById("progressText").textContent=done+" of "+total+" tasks completed";
+}
+
+renderApps();
+selectCourse(0);
+</script>
+</body>
+</html>
