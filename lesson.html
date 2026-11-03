@@ -112,6 +112,45 @@ footer{
  text-align:center;padding:28px;color:var(--muted);
  border-top:1px solid var(--border);margin-top:40px;
 }
+
+/* PROFESSIONAL LEARNING PORTAL */
+:root{--cyan:#49dcff;--purple:#9b7bff;--bg:#070b13;--panel:#101827;--panel2:#151f31;--border:#26364d}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 80% -10%,#172d50 0%,#070b13 52%);letter-spacing:.01em}
+header{padding:30px max(5%,calc((100% - 1180px)/2));background:linear-gradient(115deg,rgba(14,29,52,.96),rgba(31,20,57,.94));position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #49dcff33;border-radius:50%;right:7%;top:-170px;box-shadow:0 0 0 35px #49dcff0b,0 0 0 70px #9b7bff0a}
+.brand{font-size:12px}
+header h1{font-weight:850;letter-spacing:-1.5px}
+.container{max-width:1180px;padding:34px 5%}
+.section-title{font-size:25px;letter-spacing:-.5px}
+.app-grid{grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:18px}
+.app{padding:18px;background:linear-gradient(145deg,#131e30,#0d1523);border-radius:16px;min-height:112px}
+.app h3{font-size:17px}
+.lesson{margin-top:28px;padding:clamp(18px,3vw,32px);background:linear-gradient(145deg,#111c2d,#0c1421);border-radius:22px;box-shadow:0 22px 70px #0005}
+.lesson h2{font-size:clamp(25px,4vw,36px);letter-spacing:-.8px}
+.tag{background:#123044;border:1px solid #49dcff35}
+.mock{display:none}
+.real-shot{margin:24px 0 18px;border:1px solid #31435e;background:#080e18;border-radius:17px;overflow:hidden}
+.real-shot img{display:block;width:100%;max-height:440px;object-fit:contain;background:#080e18}
+.shot-caption{padding:12px 15px;color:#aebed3;font-size:12px;border-top:1px solid #26364d}
+.shot-caption strong{color:#49dcff}
+.resource-row{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.resource-link{display:inline-flex;align-items:center;gap:9px;padding:12px 15px;border:1px solid #354763;border-radius:12px;background:#142137;color:#eaf5ff;font-weight:750;font-size:13px}
+.resource-link.primary{background:linear-gradient(110deg,#49dcff,#8e8aff);color:#07111c;border:0}
+.content{margin-top:25px}
+.content h3{font-size:18px;letter-spacing:-.2px;margin:25px 0 10px}
+.content ol{counter-reset:guide;list-style:none;padding:0;display:grid;gap:10px}
+.content ol li{counter-increment:guide;position:relative;padding:13px 14px 13px 48px;background:#121f31;border:1px solid #273950;border-radius:12px;min-height:50px}
+.content ol li:before{content:counter(guide,decimal-leading-zero);position:absolute;left:13px;top:12px;color:#49dcff;font-weight:900;font-size:12px}
+.content ul{padding-left:21px}
+.content li{line-height:1.6}
+.tip{border-left-color:#9b7bff;background:#1b1730;padding:17px}
+.task{background:#10292b;border-color:#23645e;padding:18px}
+.task h3{margin:0}
+.task label{padding:8px 0;border-bottom:1px solid #ffffff12}
+.progress{height:9px}
+footer{background:#080d17}
+@media(max-width:600px){header{padding:25px 5%}.container{padding:24px 4%}.app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.app{min-height:105px}.real-shot img{max-height:260px}.resource-link{width:100%;justify-content:center}}
+
 button{font:inherit}
 @media(max-width:600px){
  .container{padding:20px 4%}
@@ -141,6 +180,14 @@ button{font:inherit}
   <h2 id="title">CapCut Editing Fundamentals</h2>
   <p id="description" style="color:var(--muted);margin-top:7px"></p>
 
+  <div class="real-shot">
+   <img id="softwareShot" src="" alt="Genuine video editing software interface screenshot">
+   <div class="shot-caption"><strong>REAL APP SCREENSHOT</strong> <span id="shotCaption">Interface reference for this lesson.</span></div>
+  </div>
+  <div class="resource-row">
+   <a class="resource-link primary" id="youtubeLink" href="#" target="_blank" rel="noopener">▶ Watch YouTube tutorials</a>
+   <a class="resource-link" id="officialLink" href="#" target="_blank" rel="noopener">↗ Official learning resource</a>
+  </div>
   <div class="mock">
    <div class="mock-top">
     <span id="mockName">CAPCUT • EDITING WORKSPACE</span>
@@ -199,7 +246,7 @@ button{font:inherit}
 <script>
 const courses=[
 {
- name:"CapCut",type:"Mobile Editing",icon:"01",
+ name:"CapCut", screenshot:"https://www.capcut.com/resource/capcut-desktop-download", image:"https://images.wondershare.com/filmora/article-images/capcut-filmora-10.png", shot:"CapCut effects and editing panels; desktop layout shown in this reference.", yt:"CapCut video editing tutorial for beginners Hindi", official:"https://www.capcut.com/resource/capcut-tutorial-for-beginners",type:"Mobile Editing",icon:"01",
  desc:"Learn the fundamentals of mobile video editing using CapCut. Build clean, engaging videos from raw clips.",
  preview:"CREATE YOUR STORY",
  goals:["Understand the editing workspace","Import and arrange video clips","Add text, transitions and music","Export a finished video"],
@@ -217,7 +264,7 @@ const courses=[
  tasks:["Import three video clips","Trim and arrange the clips","Add a title and music","Export your video"]
 },
 {
- name:"KineMaster",type:"Mobile Editing",icon:"02",
+ name:"KineMaster", screenshot:"https://kinemaster.com/features", image:"https://cdn.mos.cms.futurecdn.net/FKLStPZub9o25YvCaugqNj-970-80.jpg", shot:"KineMaster mobile timeline and audio mixer interface.", yt:"KineMaster complete video editing tutorial Hindi", official:"https://kinemaster.com/features",type:"Mobile Editing",icon:"02",
  desc:"Explore a multi-layer editing workflow and learn how to build organized mobile video projects.",
  preview:"MULTI-LAYER EDITING",
  goals:["Understand the timeline","Work with multiple layers","Use chroma key and keyframes","Manage audio and export"],
@@ -235,7 +282,7 @@ const courses=[
  tasks:["Create a new project","Add an extra layer","Animate a title","Export the intro"]
 },
 {
- name:"Alight Motion",type:"Motion Graphics",icon:"03",
+ name:"Alight Motion", screenshot:"https://apps.apple.com/in/app/alight-motion/id1459833443", image:"https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/cd/37/0f/cd370f4e-d294-d602-02e3-883dc70cb8a7/0dcd6f63-1872-445b-a261-11f4b3ea2c53_iPad_12.9_2_screenshot02.png/552x414bb.png", shot:"Alight Motion layer timeline, preview and color/effects controls.", yt:"Alight Motion official getting started tutorial", official:"https://support.alightmotion.com/hc/en-us/articles/10536777320337-Alight-Motion-Quick-Start-Guide",type:"Motion Graphics",icon:"03",
  desc:"Learn motion design basics, shape animation and keyframe-based movement.",
  preview:"MOTION DESIGN LAB",
  goals:["Understand layers and objects","Learn keyframe animation","Animate shapes and text","Explore visual effects"],
@@ -253,7 +300,7 @@ const courses=[
  tasks:["Create a project","Add a text layer","Set two keyframes","Export the animation"]
 },
 {
- name:"Node Video",type:"Advanced Mobile Editing",icon:"04",
+ name:"Node Video", screenshot:"https://node-video.en.softonic.com/android", image:"https://images.sftcdn.net/images/t_app-cover-l%2Cf_auto/p/ca62dd49-21da-4e0e-9f76-4eb1ca0e8e5f/2057844468/node-video-screenshot.png", shot:"Node Video inspector, color curve and layered timeline interface.", yt:"Node Video editing tutorial Android beginner", official:"https://nodevideo.com/",type:"Advanced Mobile Editing",icon:"04",
  desc:"Explore a node-based creative workflow and understand how visual effects can be connected.",
  preview:"NODE WORKFLOW",
  goals:["Understand the node workspace","Learn layer organization","Explore effects and connections","Build a simple visual composition"],
@@ -271,7 +318,7 @@ const courses=[
  tasks:["Import footage","Explore effect controls","Apply one effect","Export a test"]
 },
 {
- name:"Filmora PC",type:"Desktop Editing",icon:"05",
+ name:"Filmora PC", screenshot:"https://filmora.wondershare.com/guide-get-started/", image:"https://images.wondershare.com/filmora/article-images/business-animation-video-maker-05.jpg", shot:"Wondershare Filmora editing workspace with preview, tools and timeline.", yt:"Filmora complete video editing course Hindi", official:"https://filmora.wondershare.com/guide-get-started/",type:"Desktop Editing",icon:"05",
  desc:"Move into desktop editing with timeline organization, titles, audio and professional export basics.",
  preview:"DESKTOP VIDEO EDITING",
  goals:["Understand the desktop workspace","Manage media and timeline tracks","Add titles and audio","Export a finished project"],
@@ -289,7 +336,7 @@ const courses=[
  tasks:["Import media","Arrange timeline clips","Add titles and music","Export the final edit"]
 },
 {
- name:"DaVinci Resolve",type:"Professional Editing",icon:"06",
+ name:"DaVinci Resolve", screenshot:"https://www.blackmagicdesign.com/products/davinciresolve", image:"https://framerusercontent.com/images/ye8ptmgixzoUZiR7fsYQSLYvomU.jpg?height=2834&width=5120", shot:"DaVinci Resolve Edit page with multi-track timeline, viewer and inspector.", yt:"DaVinci Resolve beginner tutorial Hindi complete course", official:"https://www.blackmagicdesign.com/products/davinciresolve/training",type:"Professional Editing",icon:"06",
  desc:"Explore a professional post-production workflow covering editing, color, audio and delivery.",
  preview:"PROFESSIONAL POST",
  goals:["Understand the main workspace pages","Edit footage on the timeline","Learn basic color correction","Prepare final delivery"],
@@ -326,6 +373,13 @@ function selectCourse(index){
  document.getElementById("title").textContent=c.name+" — Editing Fundamentals";
  document.getElementById("description").textContent=c.desc;
  document.getElementById("mockName").textContent=c.name.toUpperCase()+" • EDITING WORKSPACE";
+ const shot=document.getElementById("softwareShot");
+ shot.src=c.image;
+ shot.alt=c.name+" editing interface screenshot";
+ document.getElementById("shotCaption").textContent=c.shot;
+ document.getElementById("youtubeLink").href="https://www.youtube.com/results?search_query="+encodeURIComponent(c.yt);
+ document.getElementById("officialLink").href=c.official;
+ document.getElementById("officialLink").textContent="↗ Official "+c.name+" guide";
  document.getElementById("previewText").textContent=c.preview;
  document.getElementById("objectives").innerHTML=c.goals.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("steps").innerHTML=c.steps.map(x=>`<li>${x}</li>`).join("");
