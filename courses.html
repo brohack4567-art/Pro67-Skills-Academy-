@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+<title>Explore Courses | BROHACK67 Free Skills Academy</title>
+<meta name="description" content="Explore 30 free skill-building courses in video editing, graphic design, coding, AI, 3D design, music production, gaming, cybersecurity and data analysis.">
+<style>
+:root {
+  --bg:#080b14;
+  --panel:#101625;
+  --panel2:#151e30;
+  --border:rgba(255,255,255,.09);
+  --text:#f3f6ff;
+  --muted:#9aa8bd;
+  --cyan:#42d9ff;
+  --blue:#6487ff;
+  --purple:#a77bff;
+  --green:#43dda6;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:radial-gradient(ellipse at 50% -20%,#182b50 0%,var(--bg) 55%);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  line-height:1.6;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+
+/* NAVIGATION */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,11,20,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  min-height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;
+}
+.logo{font-size:19px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:25px;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--cyan)}
+.nav-button{
+  padding:10px 17px;border-radius:10px;
+  background:linear-gradient(100deg,var(--cyan),var(--blue));
+  color:#07101d;font-weight:800;font-size:13px;
+}
+.menu-toggle{
+  display:none;background:transparent;color:white;
+  border:1px solid var(--border);border-radius:9px;padding:8px 12px;
+}
+
+/* HERO */
+.hero{padding:76px 0 45px;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 13px;border:1px solid rgba(66,217,255,.25);
+  border-radius:50px;color:var(--cyan);
+  background:rgba(66,217,255,.07);
+  font-size:11px;font-weight:800;letter-spacing:1.7px;
+}
+.hero h1{
+  font-size:clamp(36px,6vw,66px);
+  line-height:1.1;letter-spacing:-2px;
+  margin:23px auto 17px;max-width:850px;
+}
+.gradient-text{
+  background:linear-gradient(100deg,var(--cyan),#8b9cff,var(--purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{max-width:650px;margin:auto;color:var(--muted);font-size:16px}
+.hero-stats{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:45px;margin-top:38px;
+}
+.stat strong{display:block;font-size:26px;color:white}
+.stat span{font-size:12px;color:var(--muted)}
+
+/* SEARCH */
+.search-area{padding:20px 0 25px}
+.search-box{
+  max-width:690px;margin:auto;display:flex;align-items:center;gap:12px;
+  padding:8px 17px;background:var(--panel);
+  border:1px solid var(--border);border-radius:14px;
+}
+.search-box:focus-within{border-color:var(--cyan)}
+.search-box input{
+  width:100%;background:transparent;border:0;outline:0;
+  color:white;padding:9px 0;font-size:14px;
+}
+.search-box input::placeholder{color:#738198}
+.search-icon{color:var(--cyan);font-size:20px}
+
+/* COURSE SECTION */
+.section{padding:35px 0 75px}
+.section-heading{
+  display:flex;justify-content:space-between;
+  align-items:end;gap:15px;margin-bottom:22px;
+}
+.section-heading h2{font-size:27px;letter-spacing:-.6px}
+.section-heading p{color:var(--muted);font-size:13px}
+.filters{
+  display:flex;gap:9px;flex-wrap:wrap;margin-bottom:27px;
+}
+.filter-btn{
+  padding:9px 14px;border:1px solid var(--border);
+  border-radius:50px;background:var(--panel);
+  color:var(--muted);font-size:12px;transition:.2s;
+}
+.filter-btn:hover,.filter-btn.active{
+  color:#07101d;background:var(--cyan);
+  border-color:var(--cyan);font-weight:800;
+}
+.course-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.course-card{
+  position:relative;display:flex;flex-direction:column;
+  min-height:295px;padding:21px;
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:linear-gradient(145deg,rgba(22,32,51,.96),rgba(13,19,32,.96));
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+  overflow:hidden;
+}
+.course-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(66,217,255,.5);
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
+}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.course-icon{
+  width:49px;height:49px;display:grid;place-items:center;
+  border-radius:14px;background:rgba(66,217,255,.09);
+  font-size:24px;
+}
+.course-number{font-size:11px;color:#71829a;font-weight:800}
+.category-label{
+  display:inline-block;margin-top:18px;
+  color:var(--cyan);font-size:10px;font-weight:800;
+  letter-spacing:1.1px;text-transform:uppercase;
+}
+.course-card h3{font-size:18px;line-height:1.35;margin:7px 0}
+.course-card .description{font-size:12px;color:var(--muted);line-height:1.65}
+.card-meta{
+  display:flex;gap:12px;flex-wrap:wrap;margin-top:15px;
+  color:#a8b6ca;font-size:11px;
+}
+.card-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:19px;
+}
+.level{
+  font-size:10px;padding:5px 9px;border-radius:30px;
+  color:#b9c9e2;background:rgba(255,255,255,.06);
+}
+.view-btn{
+  background:transparent;border:0;color:var(--cyan);
+  font-size:12px;font-weight:800;
+}
+.view-btn:hover{color:white}
+.empty-state{
+  display:none;text-align:center;padding:55px 20px;
+  color:var(--muted);border:1px dashed var(--border);
+  border-radius:15px;
+}
+
+/* PROGRESS */
+.progress-section{
+  padding:25px;margin:10px 0 35px;
+  background:linear-gradient(120deg,rgba(66,217,255,.09),rgba(167,123,255,.08));
+  border:1px solid rgba(66,217,255,.2);border-radius:18px;
+}
+.progress-top{
+  display:flex;justify-content:space-between;gap:15px;
+  align-items:center;margin-bottom:13px;
+}
+.progress-top h3{font-size:16px}
+.progress-top span{color:var(--cyan);font-size:13px;font-weight:800}
+.progress-track{
+  height:8px;border-radius:20px;background:#273348;overflow:hidden;
+}
+.progress-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  border-radius:20px;transition:width .3s;
+}
+.progress-note{font-size:11px;color:var(--muted);margin-top:10px}
+
+/* MODAL */
+.modal{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.78);backdrop-filter:blur(8px);
+  padding:20px;overflow-y:auto;
+}
+.modal.open{display:flex;align-items:flex-start;justify-content:center}
+.modal-content{
+  width:min(800px,100%);margin:auto;position:relative;
+  padding:30px;background:#101827;
+  border:1px solid rgba(66,217,255,.2);border-radius:20px;
+}
+.close-modal{
+  position:absolute;right:18px;top:15px;
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid var(--border);background:#1b2638;
+  color:white;font-size:20px;
+}
+.modal-category{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1px}
+.modal-content h2{font-size:clamp(24px,4vw,34px);margin:8px 45px 10px 0}
+.modal-description{color:var(--muted);font-size:14px;margin-bottom:20px}
+.modal-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.modal-meta span{
+  padding:7px 11px;background:#1b293d;
+  border-radius:8px;font-size:11px;color:#c6d5e9;
+}
+.modal-content h3{font-size:17px;margin:24px 0 12px}
+.module-list{display:grid;gap:10px}
+.module{
+  padding:15px;background:#172235;
+  border:1px solid var(--border);border-radius:12px;
+}
+.module-title{display:flex;justify-content:space-between;gap:10px}
+.module-title strong{font-size:13px}
+.module-title small{color:var(--cyan);font-size:10px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:#bac8dc;
+}
+.lesson input{accent-color:var(--green);width:15px;height:15px}
+.lesson.done span{text-decoration:line-through;color:#7e91a8}
+.project-box{
+  padding:17px;background:rgba(67,221,166,.07);
+  border:1px solid rgba(67,221,166,.2);border-radius:12px;
+}
+.project-box p{font-size:13px;color:#c0d3d0}
+.modal-progress{margin-top:18px}
+.modal-progress p{font-size:11px;color:var(--muted);margin-bottom:8px}
+.modal-progress .progress-track{height:7px}
+
+/* FOOTER */
+.footer{
+  padding:38px 0;border-top:1px solid var(--border);
+  background:#080b12;
+}
+.footer-inner{
+  display:flex;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;align-items:center;
+}
+.footer p{font-size:12px;color:var(--muted)}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--muted)}
+.footer-links a:hover{color:var(--cyan)}
+
+@media(max-width:900px){
+  .course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .nav-inner{min-height:64px}
+  .menu-toggle{display:block}
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    padding:20px;background:#0d1422;
+    border-bottom:1px solid var(--border);
+    flex-direction:column;align-items:stretch;
+  }
+  .nav-links.show{display:flex}
+  .nav-links a{padding:8px}
+  .nav-button{text-align:center}
+  .hero{padding:55px 0 30px}
+  .hero h1{letter-spacing:-1.3px}
+  .hero p{font-size:14px}
+  .hero-stats{gap:24px}
+  .stat strong{font-size:22px}
+  .course-grid{grid-template-columns:1fr}
+  .course-card{min-height:270px}
+  .section-heading{align-items:start;flex-direction:column}
+  .modal{padding:10px}
+  .modal-content{padding:22px 17px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="index.html">BROHACK<span>67</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#progress">My Progress</a>
+      <a class="nav-button" href="#courses">Explore Courses</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <div class="eyebrow">✦ FREE LEARNING PLATFORM</div>
+    <h1>Build Skills.<br><span class="gradient-text">Create Your Future.</span></h1>
+    <p>
+      Explore practical courses, learn at your own pace and build real projects.
+      Start with the basics and keep improving every day.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><strong>30</strong><span>Skill Courses</span></div>
+      <div class="stat"><strong>09</strong><span>Learning Categories</span></div>
+      <div class="stat"><strong>100%</strong><span>Free to Explore</span></div>
+    </div>
+  </section>
+
+  <section class="search-area container">
+    <label class="search-box">
+      <span class="search-icon">⌕</span>
+      <input id="searchInput" type="search"
+        placeholder="Search courses, skills or categories..."
+        aria-label="Search courses">
+    </label>
+  </section>
+
+  <section class="section container" id="courses">
+    <div class="section-heading">
+      <div>
+        <h2>Explore All Courses</h2>
+        <p>Choose a skill and start learning today.</p>
+      </div>
+      <p id="resultCount">Showing 30 courses</p>
+    </div>
+
+    <div class="filters" id="filters"></div>
+    <div class="course-grid" id="courseGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <h3>No courses found</h3>
+      <p>Try another search or select a different category.</p>
+    </div>
+  </section>
+
+  <section class="container" id="progress">
+    <div class="progress-section">
+      <div class="progress-top">
+        <h3>Your Learning Progress</h3>
+        <span id="overallPercent">0% completed</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="overallFill"></div>
+      </div>
+      <p class="progress-note">
+        Your completed lessons are saved in this browser on this device.
+        Clearing browser data may reset your progress.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <a class="logo" href="index.html">BROHACK<span>67</span></a>
+      <p>Learn. Create. Improve. Repeat.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#progress">My Progress</a>
+    </div>
+    <p>© <span id="year"></span> BROHACK67 Free Skills Academy</p>
+  </div>
+</footer>
+
+<!-- COURSE DETAILS MODAL -->
+<div class="modal" id="courseModal" role="dialog"
+  aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <button class="close-modal" id="closeModal" aria-label="Close">×</button>
+    <div class="modal-category" id="modalCategory"></div>
+    <h2 id="modalTitle"></h2>
+    <p class="modal-description" id="modalDescription"></p>
+    <div class="modal-meta" id="modalMeta"></div>
+
+    <h3>What You Will Learn</h3>
+    <div class="module-list" id="moduleList"></div>
+
+    <h3>Practical Course Project</h3>
+    <div class="project-box">
+      <p id="modalProject"></p>
+    </div>
+
+    <div class="modal-progress">
+      <p id="courseProgressText">0% of lessons completed</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="courseProgressFill"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const courses = [
+{
+ id:1,title:"Video Editing Fundamentals",category:"Video Editing",icon:"🎬",level:"Beginner",duration:"4–6 weeks",
+ description:"Learn the complete video editing workflow, from importing footage to exporting polished videos.",
+ modules:[
+  ["Getting Started",["Understanding video editing","Editing software and workspace","Video formats and resolutions"]],
+  ["Core Editing Skills",["Importing and organising footage","Timeline, cuts and trimming","Transitions and pacing"]],
+  ["Audio and Visuals",["Adding music and sound effects","Titles and subtitles","Basic colour correction"]],
+  ["Export and Delivery",["Export settings","YouTube and social media formats","Final editing workflow"]]
+ ],
+ project:"Create a 2–3 minute edited video with clean cuts, titles, music and a professional export."
+},
+{
+ id:2,title:"Filmora Professional Editing",category:"Video Editing",icon:"🎞️",level:"Beginner to Intermediate",duration:"4–5 weeks",
+ description:"Explore Filmora's editing tools and learn to create engaging videos with a structured workflow.",
+ modules:[
+  ["Filmora Basics",["Workspace and project setup","Media import and organisation","Timeline editing"]],
+  ["Creative Editing",["Transitions and effects","Text and motion titles","Speed controls and keyframes"]],
+  ["Audio and Colour",["Audio mixing","Colour adjustment","Voice and music balance"]],
+  ["Finishing",["Export settings","Editing for different platforms","Quality control"]]
+ ],
+ project:"Produce a polished YouTube video with titles, transitions, balanced audio and suitable export settings."
+},
+{
+ id:3,title:"DaVinci Resolve",category:"Video Editing",icon:"🎨",level:"Intermediate",duration:"6–8 weeks",
+ description:"Develop editing, colour grading, audio and finishing skills using DaVinci Resolve.",
+ modules:[
+  ["Resolve Foundations",["Installation and project setup","Media page","Edit page and timeline"]],
+  ["Professional Editing",["Trimming and editing tools","Transitions and titles","Multicam concepts"]],
+  ["Colour Grading",["Colour page overview","Primary correction","Creative colour looks"]],
+  ["Audio and Delivery",["Fairlight basics","Audio mixing","Render and export settings"]]
+ ],
+ project:"Create a short cinematic video with a consistent colour look, sound design and final delivery."
+},
+{
+ id:4,title:"Adobe Premiere Pro",category:"Video Editing",icon:"📽️",level:"Intermediate",duration:"6–8 weeks",
+ description:"Learn a professional editing workflow, from project organisation to final video delivery.",
+ modules:[
+  ["Premiere Foundations",["Workspace and project setup","Importing media","Sequences and timeline"]],
+  ["Editing Techniques",["Trimming and precision editing","Transitions and effects","Text and graphics"]],
+  ["Professional Workflow",["Audio editing","Colour correction","Proxy workflow concepts"]],
+  ["Export",["Export panel","Codecs and formats","Final quality checks"]]
+ ],
+ project:"Edit a complete short video with organised media, professional pacing, titles and clean audio."
+},
+{
+ id:5,title:"CapCut Video Editing",category:"Video Editing",icon:"✂️",level:"Beginner",duration:"2–4 weeks",
+ description:"Learn short-form and social video editing using CapCut's creative tools.",
+ modules:[
+  ["Getting Started",["Interface and project setup","Importing video clips","Timeline basics"]],
+  ["Short-Form Editing",["Cuts and pacing","Captions and text","Transitions and effects"]],
+  ["Creative Tools",["Speed changes","Keyframe concepts","Audio and sound effects"]],
+  ["Publishing",["Aspect ratios","Export quality","Final review"]]
+ ],
+ project:"Create three original short-form videos in different styles with captions and sound design."
+},
+{
+ id:6,title:"VN Video Editor",category:"Video Editing",icon:"📱",level:"Beginner",duration:"2–4 weeks",
+ description:"Build mobile editing skills using VN, including timeline editing, music, titles and colour.",
+ modules:[
+  ["VN Basics",["Interface and setup","Project creation","Timeline controls"]],
+  ["Editing Skills",["Cutting and trimming","Transitions","Layering clips"]],
+  ["Creative Editing",["Text and subtitles","Music and sound effects","Colour adjustments"]],
+  ["Export",["Resolution and frame rate","Exporting projects","Reviewing the final video"]]
+ ],
+ project:"Create a mobile-edited cinematic montage with titles, music and consistent visual styling."
+},
+{
+ id:7,title:"Canva Graphic Design",category:"Graphic Design",icon:"🖌️",level:"Beginner",duration:"3–4 weeks",
+ description:"Learn design fundamentals and create social posts, presentations and visual content with Canva.",
+ modules:[
+  ["Design Foundations",["What makes a good design","Layout and composition","Colour and typography"]],
+  ["Canva Skills",["Workspace and templates","Elements and shapes","Image and text editing"]],
+  ["Content Design",["Social media posts","Presentations","Posters and banners"]],
+  ["Final Workflow",["Brand consistency","Export formats","Design review"]]
+ ],
+ project:"Build a mini brand kit and create a matching poster, presentation cover and social media post."
+},
+{
+ id:8,title:"Adobe Photoshop",category:"Graphic Design",icon:"🖼️",level:"Beginner to Intermediate",duration:"6–8 weeks",
+ description:"Learn image editing, layers, selections, typography and creative visual composition.",
+ modules:[
+  ["Photoshop Basics",["Workspace and documents","Layers and layer groups","Image sizes and resolution"]],
+  ["Editing Tools",["Selections and masking","Brush and retouching tools","Adjustment layers"]],
+  ["Creative Design",["Typography and layouts","Compositing concepts","Effects and filters"]],
+  ["Export",["File formats","Web and print output","Project organisation"]]
+ ],
+ project:"Design a complete promotional poster using layers, image editing and typography."
+},
+{
+ id:9,title:"YouTube Thumbnail Design",category:"Graphic Design",icon:"📸",level:"Beginner",duration:"2–3 weeks",
+ description:"Learn thumbnail composition, readable text, contrast and visual storytelling.",
+ modules:[
+  ["Thumbnail Basics",["Thumbnail purpose","Composition and hierarchy","Choosing a visual concept"]],
+  ["Design Skills",["Backgrounds and cutouts","Typography","Contrast and colour"]],
+  ["Visual Impact",["Focal points","Image editing","Consistency across a channel"]],
+  ["Final Output",["Thumbnail dimensions","Export quality","Design testing"]]
+ ],
+ project:"Create a set of five original thumbnails for different video topics."
+},
+{
+ id:10,title:"Poster & Banner Design",category:"Graphic Design",icon:"📰",level:"Beginner to Intermediate",duration:"3–4 weeks",
+ description:"Create professional posters and banners for events, online content and creative projects.",
+ modules:[
+  ["Visual Foundations",["Purpose and audience","Layout and balance","Colour combinations"]],
+  ["Design Process",["Typography choices","Image placement","Shapes and visual elements"]],
+  ["Design Applications",["Event posters","YouTube banners","Promotional graphics"]],
+  ["Final Delivery",["Resolution and dimensions","Export formats","Design presentation"]]
+ ],
+ project:"Create an event poster, a web banner and a matching promotional graphic."
+},
+{
+ id:11,title:"Logo & Brand Identity Design",category:"Graphic Design",icon:"🔷",level:"Intermediate",duration:"4–6 weeks",
+ description:"Understand logo concepts, brand consistency and visual identity systems.",
+ modules:[
+  ["Brand Foundations",["What is a brand identity","Audience and brand purpose","Research and references"]],
+  ["Logo Concepts",["Shapes and symbolism","Typography-based logos","Sketching concepts"]],
+  ["Identity System",["Colour palette","Font selection","Supporting visual elements"]],
+  ["Presentation",["Logo variations","Brand guidelines","Exporting assets"]]
+ ],
+ project:"Create an original brand identity with a logo, colour palette, typography and mini brand guide."
+},
+{
+ id:12,title:"Blender Fundamentals",category:"3D Design & Animation",icon:"🧊",level:"Beginner",duration:"5–7 weeks",
+ description:"Learn Blender's interface, modelling tools, materials, lighting and rendering.",
+ modules:[
+  ["Blender Basics",["Interface and navigation","Objects and transformations","Scene organisation"]],
+  ["Modelling",["Mesh editing","Basic modifiers","Simple object modelling"]],
+  ["Materials and Lighting",["Material properties","Lighting types","Camera setup"]],
+  ["Rendering",["Render settings","Image output","Project organisation"]]
+ ],
+ project:"Create a polished 3D scene containing multiple original objects, materials and lighting."
+},
+{
+ id:13,title:"3D Modelling",category:"3D Design & Animation",icon:"🏗️",level:"Beginner to Intermediate",duration:"5–7 weeks",
+ description:"Develop 3D modelling skills and learn to build clean, organised objects and scenes.",
+ modules:[
+  ["Modelling Foundations",["3D space and geometry","Vertices, edges and faces","Object editing"]],
+  ["Modelling Methods",["Hard-surface concepts","Subdivision modelling","Modifiers"]],
+  ["Materials",["UV mapping concepts","Materials and textures","Surface details"]],
+  ["Presentation",["Lighting","Camera composition","Rendering"]]
+ ],
+ project:"Model an original product or environment asset and present it in a rendered scene."
+},
+{
+ id:14,title:"3D Animation & Rendering",category:"3D Design & Animation",icon:"🎥",level:"Intermediate",duration:"6–8 weeks",
+ description:"Explore animation principles, keyframes, cameras and rendering in 3D scenes.",
+ modules:[
+  ["Animation Basics",["Animation principles","Timeline and keyframes","Object animation"]],
+  ["Movement",["Interpolation","Timing and spacing","Camera animation"]],
+  ["Scene Building",["Materials and lighting","Environment setup","Animation polish"]],
+  ["Rendering",["Render settings","Output formats","Final review"]]
+ ],
+ project:"Create a short original 3D animation with a planned camera movement and final render."
+},
+{
+ id:15,title:"BandLab Music Production",category:"Music Production",icon:"🎧",level:"Beginner",duration:"3–5 weeks",
+ description:"Learn digital music production using tracks, loops, instruments and basic mixing.",
+ modules:[
+  ["Music Production Basics",["DAW concepts","BandLab workspace","Project setup"]],
+  ["Building a Track",["Loops and samples","Virtual instruments","Arranging sections"]],
+  ["Audio Skills",["Recording basics","Editing clips","Volume and panning"]],
+  ["Finishing",["Basic mixing","Exporting audio","Project organisation"]]
+ ],
+ project:"Produce an original short instrumental track with multiple arranged layers."
+},
+{
+ id:16,title:"Audio Editing & Sound Design",category:"Music Production",icon:"🔊",level:"Beginner to Intermediate",duration:"4–6 weeks",
+ description:"Learn audio cleanup, sound effects, recording concepts and sound design for media.",
+ modules:[
+  ["Audio Foundations",["Digital audio basics","Waveforms and levels","Recording environments"]],
+  ["Editing",["Trimming and arranging","Noise reduction concepts","Fades and transitions"]],
+  ["Sound Design",["Layering sound effects","Creating atmosphere","Audio for video"]],
+  ["Delivery",["Mix balance","Export formats","Quality checking"]]
+ ],
+ project:"Create an original soundscape for a short scene using recorded and designed sounds."
+},
+{
+ id:17,title:"Beat Making & Music Composition",category:"Music Production",icon:"🥁",level:"Beginner to Intermediate",duration:"4–6 weeks",
+ description:"Explore rhythm, melody, arrangement and original beat creation.",
+ modules:[
+  ["Music Foundations",["Tempo and rhythm","Musical structure","Basic melody concepts"]],
+  ["Beat Creation",["Drum patterns","Basslines","Percussion and layering"]],
+  ["Composition",["Melody development","Chord progressions","Song arrangement"]],
+  ["Production",["Mixing fundamentals","Sound selection","Final export"]]
+ ],
+ project:"Compose an original beat with drums, bass, melody and a complete arrangement."
+},
+{
+ id:18,title:"HTML Web Development",category:"Coding & Web Development",icon:"🌐",level:"Beginner",duration:"2–3 weeks",
+ description:"Learn HTML structure and build the foundation of modern websites.",
+ modules:[
+  ["HTML Foundations",["How websites work","HTML document structure","Elements and attributes"]],
+  ["Content",["Headings and paragraphs","Links and images","Lists and tables"]],
+  ["Forms and Structure",["Forms and inputs","Semantic HTML","Accessible page structure"]],
+  ["Building a Website",["Multiple pages","Organising files","Browser testing"]]
+ ],
+ project:"Build a multi-section personal portfolio website using semantic HTML."
+},
+{
+ id:19,title:"CSS & Responsive Web Design",category:"Coding & Web Development",icon:"🎨",level:"Beginner to Intermediate",duration:"3–4 weeks",
+ description:"Style websites with CSS, create layouts and make pages work on mobile and desktop.",
+ modules:[
+  ["CSS Foundations",["Selectors and properties","Colours and typography","Box model"]],
+  ["Layout",["Flexbox","CSS Grid","Spacing and alignment"]],
+  ["Responsive Design",["Media queries","Mobile-first layouts","Responsive images"]],
+  ["Polish",["Transitions","Reusable styles","Accessibility and testing"]]
+ ],
+ project:"Design a responsive landing page that adapts to mobile, tablet and desktop screens."
+},
+{
+ id:20,title:"JavaScript Programming",category:"Coding & Web Development",icon:"⚡",level:"Beginner to Intermediate",duration:"5–7 weeks",
+ description:"Learn programming fundamentals and make websites interactive with JavaScript.",
+ modules:[
+  ["JavaScript Basics",["Variables and data types","Operators","Conditions"]],
+  ["Programming Logic",["Loops","Functions","Arrays and objects"]],
+  ["Web Interactivity",["DOM fundamentals","Events and forms","Updating page content"]],
+  ["Building Projects",["Local storage","Debugging","Project structure"]]
+ ],
+ project:"Build an interactive task manager with add, complete, delete and save features."
+},
+{
+ id:21,title:"Python Programming",category:"Coding & Web Development",icon:"🐍",level:"Beginner to Intermediate",duration:"5–7 weeks",
+ description:"Understand Python syntax, problem-solving, functions and practical programming.",
+ modules:[
+  ["Python Foundations",["Installing Python","Variables and data types","Input and output"]],
+  ["Core Programming",["Conditions and loops","Functions","Lists and dictionaries"]],
+  ["Working with Data",["Strings and files","Error handling","Modules"]],
+  ["Practical Coding",["Problem-solving","Debugging","Building small applications"]]
+ ],
+ project:"Create an original Python application such as a quiz program or personal expense organiser."
+},
+{
+ id:22,title:"ChatGPT Mastery",category:"AI Tools & Creativity",icon:"🤖",level:"Beginner",duration:"2–3 weeks",
+ description:"Learn how to use AI assistants for learning, planning, research and creative work responsibly.",
+ modules:[
+  ["AI Foundations",["What AI assistants do","Strengths and limitations","Checking AI-generated information"]],
+  ["Prompting",["Clear instructions","Context and examples","Improving responses"]],
+  ["Practical Workflows",["Learning and explanations","Writing and brainstorming","Planning projects"]],
+  ["Responsible Use",["Privacy awareness","Fact checking","Academic integrity"]]
+ ],
+ project:"Design a useful AI-assisted workflow for planning and completing an original creative project."
+},
+{
+ id:23,title:"Google Gemini",category:"AI Tools & Creativity",icon:"✨",level:"Beginner",duration:"2–3 weeks",
+ description:"Explore Google's AI assistant and learn practical ways to organise information and develop ideas.",
+ modules:[
+  ["Getting Started",["Understanding Gemini","Interface and features","Responsible usage"]],
+  ["Prompt Skills",["Writing clear prompts","Adding context","Refining results"]],
+  ["Creative Applications",["Brainstorming","Learning support","Planning and organisation"]],
+  ["Evaluation",["Checking accuracy","Privacy and safety","Reviewing outputs"]]
+ ],
+ project:"Create a research and planning document using AI assistance, with independently verified information."
+},
+{
+ id:24,title:"AI Prompt Engineering",category:"AI Tools & Creativity",icon:"🧠",level:"Beginner to Intermediate",duration:"3–4 weeks",
+ description:"Learn to write, test and improve prompts for clearer and more useful AI outputs.",
+ modules:[
+  ["Prompt Foundations",["What is a prompt","Instructions and context","Output formats"]],
+  ["Prompt Design",["Role and task framing","Examples and constraints","Step-by-step requests"]],
+  ["Testing",["Comparing outputs","Refining prompts","Reducing ambiguity"]],
+  ["Practical Systems",["Reusable prompt templates","Creative workflows","Responsible prompting"]]
+ ],
+ project:"Build a collection of tested prompts for research, creative planning and productivity."
+},
+{
+ id:25,title:"AI Image & Video Creation",category:"AI Tools & Creativity",icon:"🪄",level:"Beginner to Intermediate",duration:"3–5 weeks",
+ description:"Understand AI-assisted visual creation, creative direction and responsible media workflows.",
+ modules:[
+  ["AI Visual Foundations",["How generative media works","Image and video concepts","Creative limitations"]],
+  ["Visual Prompting",["Subject and composition","Lighting and style","Refining descriptions"]],
+  ["Production Workflow",["Planning a visual sequence","Consistency and continuity","Editing generated assets"]],
+  ["Responsible Creation",["Copyright awareness","Disclosure and authenticity","Reviewing output quality"]]
+ ],
+ project:"Create an original visual concept series with a storyboard and a short edited presentation."
+},
+{
+ id:26,title:"Game Design Fundamentals",category:"Gaming & Game Creation",icon:"🎮",level:"Beginner",duration:"4–6 weeks",
+ description:"Learn how game ideas become playable experiences through mechanics, levels and testing.",
+ modules:[
+  ["Game Design Basics",["Game genres and audiences","Core gameplay loops","Design goals"]],
+  ["Mechanics",["Rules and player actions","Controls and feedback","Difficulty concepts"]],
+  ["Level Design",["Objectives and progression","Environment planning","Player guidance"]],
+  ["Testing",["Playtesting basics","Collecting feedback","Improving a design"]]
+ ],
+ project:"Design an original mini-game concept with rules, a level plan and a playable prototype."
+},
+{
+ id:27,title:"Game Cinematics & Storytelling",category:"Gaming & Game Creation",icon:"🎬",level:"Intermediate",duration:"4–6 weeks",
+ description:"Learn visual storytelling, shot planning, camera movement and cinematic scene structure.",
+ modules:[
+  ["Visual Storytelling",["Story structure","Character motivation","Visual communication"]],
+  ["Cinematic Planning",["Shot types and framing","Storyboards","Scene continuity"]],
+  ["Camera and Editing",["Camera movement concepts","Pacing and transitions","Sound and atmosphere"]],
+  ["Final Production",["Scene assembly","Editing and review","Presentation"]]
+ ],
+ project:"Create a storyboard and an original short game-style cinematic using authorised assets."
+},
+{
+ id:28,title:"Responsible Game Modding",category:"Gaming & Game Creation",icon:"🛠️",level:"Intermediate",duration:"4–6 weeks",
+ description:"Understand game file organisation, modding concepts and responsible customisation in permitted environments.",
+ modules:[
+  ["Modding Foundations",["What game mods are","Game asset formats","Reading documentation"]],
+  ["Asset Concepts",["Textures and materials","Organising project files","Version management"]],
+  ["Safe Workflows",["Using authorised tools","Backups and testing","Respecting licences and terms"]],
+  ["Documentation",["Recording changes","Testing compatibility","Sharing responsibly"]]
+ ],
+ project:"Create a small original customisation for a game or sample project that explicitly permits modding."
+},
+{
+ id:29,title:"Cybersecurity Fundamentals",category:"Cybersecurity",icon:"🔐",level:"Beginner",duration:"5–7 weeks",
+ description:"Learn digital safety, networking concepts, privacy, account protection and ethical cybersecurity.",
+ modules:[
+  ["Security Foundations",["What cybersecurity means","Common online threats","Security terminology"]],
+  ["Networking Basics",["How the internet works","IP and DNS concepts","HTTP and HTTPS"]],
+  ["Personal Security",["Strong passwords and passkeys","Multi-factor authentication","Phishing awareness"]],
+  ["Ethics and Defence",["Privacy and data protection","Security updates and backups","Responsible security learning"]]
+ ],
+ project:"Create a personal digital safety checklist and a presentation explaining how to recognise common online threats."
+},
+{
+ id:30,title:"Data Analysis & Visualization",category:"Data Analysis",icon:"📊",level:"Beginner to Intermediate",duration:"5–7 weeks",
+ description:"Learn to organise, analyse and communicate information using spreadsheets, charts and introductory data tools.",
+ modules:[
+  ["Data Foundations",["What data analysis means","Types of data","Asking useful questions"]],
+  ["Spreadsheets",["Rows, columns and tables","Sorting and filtering","Basic formulas and functions"]],
+  ["Analysis",["Data cleaning concepts","Summary statistics","Finding patterns"]],
+  ["Visualisation",["Choosing suitable charts","Building dashboards","Explaining findings"]]
+ ],
+ project:"Analyse a sample dataset, create clear charts and present your findings in a short report."
+}
+];
+
+const categories = [
+ "All Courses",
+ "Video Editing",
+ "Graphic Design",
+ "3D Design & Animation",
+ "Music Production",
+ "Coding & Web Development",
+ "AI Tools & Creativity",
+ "Gaming & Game Creation",
+ "Cybersecurity",
+ "Data Analysis"
+];
+
+const STORAGE_KEY = "brohack67_academy_progress_v1";
+let completed = {};
+
+try {
+  completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  if (!completed || typeof completed !== "object" || Array.isArray(completed)) {
+    completed = {};
+  }
+} catch (error) {
+  completed = {};
+}
+
+const grid = document.getElementById("courseGrid");
+const filters = document.getElementById("filters");
+const searchInput = document.getElementById("searchInput");
+const emptyState = document.getElementById("emptyState");
+const modal = document.getElementById("courseModal");
+
+let activeCategory = "All Courses";
+
+function allLessons() {
+  return courses.reduce((total, course) => {
+    return total + course.modules.reduce((n, module) => n + module[1].length, 0);
+  }, 0);
+}
+
+function courseLessons(course) {
+  return course.modules.reduce((total, module) => total + module[1].length, 0);
+}
+
+function completedCount(course) {
+  return course.modules.reduce((total, module, moduleIndex) => {
+    return total + module[1].filter((lesson, lessonIndex) =>
+      completed[course.id + "-" + moduleIndex + "-" + lessonIndex]
+    ).length;
+  }, 0);
+}
+
+function coursePercent(course) {
+  return Math.round(completedCount(course) / courseLessons(course) * 100);
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+  } catch (error) {
+    console.warn("Progress could not be saved in this browser.", error);
+  }
+  updateOverallProgress();
+}
+
+function updateOverallProgress() {
+  const total = allLessons();
+  let done = 0;
+  courses.forEach(course => done += completedCount(course));
+  const percent = total ? Math.round(done / total * 100) : 0;
+  document.getElementById("overallPercent").textContent = percent + "% completed";
+  document.getElementById("overallFill").style.width = percent + "%";
+}
+
+function renderFilters() {
+  filters.innerHTML = "";
+  categories.forEach(category => {
+    const button = document.createElement("button");
+    button.className = "filter-btn" + (activeCategory === category ? " active" : "");
+    button.textContent = category;
+    button.type = "button";
+    button.addEventListener("click", () => {
+      activeCategory = category;
+      renderFilters();
+      renderCourses();
+    });
+    filters.appendChild(button);
+  });
+}
+
+function renderCourses() {
+  const query = searchInput.value.trim().toLowerCase();
+  const filtered = courses.filter(course => {
+    const matchesCategory = activeCategory === "All Courses" ||
+      course.category === activeCategory;
+    const searchable = [
+      course.title, course.category, course.description,
+      course.level, ...course.modules.flatMap(m => [m[0], ...m[1]])
+    ].join(" ").toLowerCase();
+    return matchesCategory && searchable.includes(query);
+  });
+
+  grid.innerHTML = "";
+  document.getElementById("resultCount").textContent =
+    "Showing " + filtered.length + " of " + courses.length + " courses";
+  emptyState.style.display = filtered.length ? "none" : "block";
+
+  filtered.forEach(course => {
+    const card = document.createElement("article");
+    card.className = "course-card";
+
+    const top = document.createElement("div");
+    top.className = "card-top";
+
+    const icon = document.createElement("div");
+    icon.className = "course-icon";
+    icon.textContent = course.icon;
+
+    const number = document.createElement("span");
+    number.className = "course-number";
+    number.textContent = "COURSE " + String(course.id).padStart(2, "0");
+
+    top.append(icon, number);
+
+    const category = document.createElement("div");
+    category.className = "category-label";
+    category.textContent = course.category;
+
+    const title = document.createElement("h3");
+    title.textContent = course.title;
+
+    const description = document.createElement("p");
+    description.className = "description";
+    description.textContent = course.description;
+
+    const meta = document.createElement("div");
+    meta.className = "card-meta";
+    meta.textContent = "◷ " + course.duration + "  •  " +
+      courseLessons(course) + " lessons";
+
+    const bottom = document.createElement("div");
+    bottom.className = "card-bottom";
+
+    const level = document.createElement("span");
+    level.className = "level";
+    level.textContent = course.level;
+
+    const view = document.createElement("button");
+    view.className = "view-btn";
+    view.type = "button";
+    view.textContent = "Explore Course →";
+    view.addEventListener("click", () => openCourse(course.id));
+
+    bottom.append(level, view);
+    card.append(top, category, title, description, meta, bottom);
+    grid.appendChild(card);
+  });
+}
+
+function openCourse(courseId) {
+  const course = courses.find(item => item.id === courseId);
+  if (!course) return;
+
+  document.getElementById("modalCategory").textContent =
+    "COURSE " + String(course.id).padStart(2, "0") + "  /  " + course.category;
+  document.getElementById("modalTitle").textContent = course.title;
+  document.getElementById("modalDescription").textContent = course.description;
+
+  const meta = document.getElementById("modalMeta");
+  meta.innerHTML = "";
+  [course.level, course.duration, courseLessons(course) + " lessons"].forEach(value => {
+    const item = document.createElement("span");
+    item.textContent = value;
+    meta.appendChild(item);
+  });
+
+  document.getElementById("modalProject").textContent = course.project;
+
+  const moduleList = document.getElementById("moduleList");
+  moduleList.innerHTML = "";
+
+  course.modules.forEach((module, moduleIndex) => {
+    const moduleElement = document.createElement("div");
+    moduleElement.className = "module";
+
+    const heading = document.createElement("div");
+    heading.className = "module-title";
+
+    const title = document.createElement("strong");
+    title.textContent = "Module " + (moduleIndex + 1) + ": " + module[0];
+
+    const count = document.createElement("small");
+    count.textContent = module[1].length + " LESSONS";
+
+    heading.append(title, count);
+
+    const lessonList = document.createElement("div");
+    lessonList.className = "lesson-list";
+
+    module[1].forEach((lesson, lessonIndex) => {
+      const key = course.id + "-" + moduleIndex + "-" + lessonIndex;
+      const label = document.createElement("label");
+      label.className = "lesson";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = Boolean(completed[key]);
+
+      const text = document.createElement("span");
+      text.textContent = lesson;
+
+      if (checkbox.checked) label.classList.add("done");
+
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) completed[key] = true;
+        else delete completed[key];
+
+        label.classList.toggle("done", checkbox.checked);
+        saveProgress();
+        updateCourseProgress(course);
+      });
+
+      label.append(checkbox, text);
+      lessonList.appendChild(label);
+    });
+
+    moduleElement.append(heading, lessonList);
+    moduleList.appendChild(moduleElement);
+  });
+
+  updateCourseProgress(course);
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  document.getElementById("closeModal").focus();
+}
+
+function updateCourseProgress(course) {
+  const percent = coursePercent(course);
+  document.getElementById("courseProgressText").textContent =
+    completedCount(course) + " of " + courseLessons(course) +
+    " lessons completed (" + percent + "%)";
+  document.getElementById("courseProgressFill").style.width = percent + "%";
+}
+
+function closeCourse() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+searchInput.addEventListener("input", renderCourses);
+document.getElementById("closeModal").addEventListener("click", closeCourse);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeCourse();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && modal.classList.contains("open")) {
+    closeCourse();
+  }
+});
+
+document.getElementById("menuToggle").addEventListener("click", () => {
+  document.getElementById("navLinks").classList.toggle("show");
+});
+
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("show");
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderFilters();
+renderCourses();
+updateOverallProgress();
+</script>
+</body>
+</html>
