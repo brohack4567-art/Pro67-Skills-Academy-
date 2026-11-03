@@ -166,6 +166,24 @@ button{font:inherit}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-note{padding:12px 15px;color:#aebed3;font-size:12px}
 
+
+/* BROHACK67 AI tutor */
+.ai-tutor{margin:28px 0;padding:20px;background:linear-gradient(145deg,#111d30,#0c1421);border:1px solid #2c4260;border-radius:20px}
+.ai-tutor-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.ai-tutor-head h3{font-size:21px;color:#49dcff}
+.ai-tutor-head p{color:#aebed3;font-size:13px}
+.ai-status{font-size:12px;color:#aebed3}
+.ai-chat-log{height:320px;overflow:auto;display:flex;flex-direction:column;gap:10px;margin:16px 0;padding:12px;background:#080e18;border:1px solid #26364d;border-radius:14px}
+.ai-message{max-width:90%;padding:11px 13px;border-radius:12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
+.ai-message.assistant{align-self:flex-start;background:#14243a;color:#eaf5ff;border:1px solid #2c4260}
+.ai-message.user{align-self:flex-end;background:#163d4c;color:#f2fbff;border:1px solid #287b91}
+.ai-chat-form{display:flex;gap:10px}
+.ai-chat-form input{flex:1;min-width:0;background:#080e18;color:#f2f6ff;border:1px solid #344763;border-radius:12px;padding:13px;font:inherit}
+.ai-chat-form button{background:linear-gradient(110deg,#49dcff,#9b7bff);color:#07111c;border:0;border-radius:12px;padding:0 18px;font-weight:850;cursor:pointer}
+.ai-chat-form button:disabled{opacity:.5;cursor:wait}
+.ai-disclaimer{font-size:11px;color:#8497b2;margin-top:10px}
+@media(max-width:600px){.ai-tutor{padding:14px}.ai-chat-log{height:280px}.ai-chat-form{flex-direction:column}.ai-chat-form button{padding:12px}}
+
 </style>
 </head>
 <body>
@@ -205,6 +223,21 @@ button{font:inherit}
    <a class="resource-link primary" id="youtubeLink" href="#" target="_blank" rel="noopener">▶ Watch YouTube tutorials</a>
    <a class="resource-link" id="officialLink" href="#" target="_blank" rel="noopener">↗ Official learning resource</a>
   </div>
+
+  <section class="ai-tutor" aria-labelledby="aiTutorTitle">
+   <div class="ai-tutor-head">
+    <div><h3 id="aiTutorTitle">BROHACK67 AI Tutor</h3><p>Ask doubts about this editing course in Hindi or Hinglish.</p></div>
+    <span class="ai-status" id="aiStatus">AI tutor setup pending</span>
+   </div>
+   <div class="ai-chat-log" id="aiChatLog" role="log" aria-live="polite">
+    <div class="ai-message assistant">Namaste! Main tumhara video-editing tutor hoon. Is lesson se related koi bhi doubt poochho.</div>
+   </div>
+   <form class="ai-chat-form" id="aiChatForm">
+    <input id="aiQuestion" type="text" maxlength="1500" placeholder="Example: Keyframe kya hota hai?" autocomplete="off" aria-label="Ask the AI tutor">
+    <button id="aiSend" type="submit">Ask AI ↗</button>
+   </form>
+   <p class="ai-disclaimer">AI answers may need checking. Never share passwords, API keys, or personal information.</p>
+  </section>
   <div class="mock">
    <div class="mock-top">
     <span id="mockName">CAPCUT • EDITING WORKSPACE</span>
@@ -428,6 +461,60 @@ function updateProgress(){
 
 renderApps();
 selectCourse(0);
+
+/* BROHACK67 AI tutor client. Replace the endpoint after deploying the Render backend. */
+const BROHACK67_AI_ENDPOINT = "https://YOUR-RENDER-SERVICE.onrender.com/api/chat";
+const aiChatHistory = [];
+const aiForm = document.getElementById("aiChatForm");
+const aiQuestion = document.getElementById("aiQuestion");
+const aiSend = document.getElementById("aiSend");
+const aiChatLog = document.getElementById("aiChatLog");
+const aiStatus = document.getElementById("aiStatus");
+
+function addAiMessage(role, text) {
+ const bubble = document.createElement("div");
+ bubble.className = "ai-message " + role;
+ bubble.textContent = text;
+ aiChatLog.appendChild(bubble);
+ aiChatLog.scrollTop = aiChatLog.scrollHeight;
+ return bubble;
+}
+aiForm.addEventListener("submit", async (event) => {
+ event.preventDefault();
+ const question = aiQuestion.value.trim();
+ if (!question || aiSend.disabled) return;
+ if (BROHACK67_AI_ENDPOINT.includes("YOUR-RENDER-SERVICE")) {
+  aiStatus.textContent = "Backend URL needs configuration";
+  addAiMessage("assistant", "AI tutor abhi connect nahi hua hai. Render backend deploy hone ke baad is page mein API URL set karna hoga.");
+  return;
+ }
+ addAiMessage("user", question);
+ aiQuestion.value = "";
+ aiSend.disabled = true;
+ aiStatus.textContent = "Grok is answering…";
+ const pending = addAiMessage("assistant", "Soch raha hoon…");
+ try {
+  const activeCourse = courses[selected]?.name || "Video Editing";
+  const response = await fetch(BROHACK67_AI_ENDPOINT, {
+   method: "POST",
+   headers: { "Content-Type": "application/json" },
+   body: JSON.stringify({ message: question, course: activeCourse, history: aiChatHistory.slice(-10) })
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || "Request failed (" + response.status + ")");
+  const answer = data.reply || "AI ne empty response diya. Dobara try karo.";
+  pending.textContent = answer;
+  aiChatHistory.push({ role: "user", content: question }, { role: "assistant", content: answer });
+  aiStatus.textContent = "Connected to AI tutor";
+ } catch (error) {
+  pending.textContent = "Abhi AI se connect nahi ho pa raha. " + (error.message || "Please try again.");
+  aiStatus.textContent = "Connection issue";
+ } finally {
+  aiSend.disabled = false;
+  aiQuestion.focus();
+ }
+});
+
 </script>
 </body>
 </html>
