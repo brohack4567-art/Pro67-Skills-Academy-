@@ -908,9 +908,20 @@ function openCourse(courseId) {
     "COURSE " + String(course.id).padStart(2, "0") + "  /  " + course.category;
   document.getElementById("modalTitle").textContent = course.title;
   document.getElementById("modalDescription").textContent = course.description;
-  document.getElementById("courseStartAction").innerHTML = course.id === 1
-    ? '<a class="start-learning-btn" href="lesson.html">▶ Start Learning</a>'
-    : "";
+  const startAction = document.getElementById("courseStartAction");
+  startAction.innerHTML = course.id === 1
+    ? '<a class="start-learning-btn" href="/Pro67-Skills-Academy-/lesson.html">▶ Start Learning</a>'
+    : '<button class="start-learning-btn" id="startCourseModules" type="button">▶ Start Learning</button>';
+
+  const startModulesButton = document.getElementById("startCourseModules");
+  if (startModulesButton) {
+    startModulesButton.addEventListener("click", () => {
+      document.getElementById("moduleList").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  }
 
   const meta = document.getElementById("modalMeta");
   meta.innerHTML = "";
