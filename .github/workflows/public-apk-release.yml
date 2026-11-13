@@ -1,6 +1,11 @@
 name: Publish Zenvora APK to GitHub Releases
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "android-native/**"
+      - ".github/workflows/public-apk-release.yml"
 permissions:
   contents: write
 jobs:
