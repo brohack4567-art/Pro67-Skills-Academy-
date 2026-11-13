@@ -1,5 +1,7 @@
 name: Build Pro67 Skills Academy APK
 
+run-name: Updated Pro67 Skills Academy Android APK
+
 on:
   workflow_dispatch:
   push:
