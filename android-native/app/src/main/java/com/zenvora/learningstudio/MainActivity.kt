@@ -89,17 +89,50 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
  Spacer(Modifier.width(14.dp));Column(Modifier.weight(1f)){Text(course.level,color=Cyan,fontSize=9.sp,fontWeight=FontWeight.Bold,letterSpacing=1.5.sp);Text(course.title,fontWeight=FontWeight.Bold,fontSize=17.sp);Text(course.subtitle,color=Muted,fontSize=12.sp);Text(course.lessons.toString()+" lessons • Start learning →",color=Cyan,fontSize=11.sp)}
  Icon(Icons.Filled.ChevronRight,null,tint=Muted)
 }}}
-@Composable private fun CourseScreen(course:Course,onBack:()->Unit,onComplete:()->Unit){var done by remember{mutableStateOf(false)}
- Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(18.dp)){TextButton(onClick=onBack){Text("← Back to courses",color=Cyan)}
- Text(course.icon,fontSize=42.sp);Text(course.title,fontSize=29.sp,fontWeight=FontWeight.ExtraBold);Text(course.subtitle,color=Muted);Spacer(Modifier.height(16.dp))
- Surface(color=Panel,shape=RoundedCornerShape(18.dp),border=BorderStroke(1.dp,Color(0xFF29435C))){Column(Modifier.padding(18.dp)){
- Text("YOUR LEARNING PATH",color=Cyan,fontSize=11.sp,fontWeight=FontWeight.Bold,letterSpacing=2.sp);Text(course.lessons.toString()+" lessons • Beginner to Pro",fontSize=18.sp,fontWeight=FontWeight.Bold);Spacer(Modifier.height(8.dp))
- listOf("Getting started & workspace","Editing fundamentals","Layers, titles & transitions","Keyframes and motion","Audio, effects & polish","Export and portfolio project").forEachIndexed{i,stage->
- Row(Modifier.fillMaxWidth().padding(vertical=10.dp),verticalAlignment=Alignment.CenterVertically){Text((i+1).toString().padStart(2,'0'),color=Cyan,fontWeight=FontWeight.Bold);Spacer(Modifier.width(14.dp));Column(Modifier.weight(1f)){Text(stage,fontWeight=FontWeight.SemiBold);Text("Lesson group "+(i+1),color=Muted,fontSize=11.sp)};Icon(Icons.Filled.PlayCircleOutline,null,tint=Cyan)}
- HorizontalDivider(color=Color(0xFF263F58))}
- Spacer(Modifier.height(12.dp));Button(onClick={if(!done){done=true;onComplete()}},modifier=Modifier.fillMaxWidth(),colors=ButtonDefaults.buttonColors(containerColor=Cyan,contentColor=Navy)){Text(if(done)"Progress saved ✓" else "Mark course started")}
- }}
-}}
+@Composable private fun CourseScreen(course:Course,onBack:()->Unit,onComplete:()->Unit){
+ val context=androidx.compose.ui.platform.LocalContext.current
+ var completed by remember{mutableStateOf(setOf<Int>())}
+ val stages=when(course.title){
+ "CapCut Editing"->listOf("Interface, projects & media","Timeline editing & precision cuts","Text, captions & typography","Transitions, effects & overlays","Audio, voiceover & sound design","Speed ramps, keyframes & tracking","Colour, export & quality control","Final short-form portfolio project")
+ "KineMaster"->listOf("Workspace setup & media import","Timeline editing fundamentals","Layers, titles & chroma key","Keyframes, animation & transitions","Audio mixing & sound design","Effects, compositing & colour","Export settings & optimisation","Client-ready portfolio project")
+ "Alight Motion"->listOf("Projects, layers & interface","Keyframe fundamentals & easing","Text, shapes & vector animation","Effects, masks & compositing","Advanced motion & camera","Tracking, polish & visual rhythm","Export, frame rate & optimisation","Motion graphics portfolio")
+ "Node Video Editor"->listOf("Interface, nodes & project setup","Editing basics & media workflow","Keyframes, curves & motion","Effects, colour & adjustments","Compositing and advanced layers","Motion design & visual effects","Render settings & quality checks","Advanced portfolio challenge")
+ "Filmora PC Editor"->listOf("Workspace, media & project setup","Timeline editing fundamentals","Titles, transitions & overlays","Audio, voice & sound cleanup","Colour correction & speed effects","Advanced editing workflow","Export, codecs & quality control","Portfolio and client delivery")
+ else->listOf("DaVinci interface, projects & media","Cut and Edit page fundamentals","Timeline, trimming & finishing","Colour correction and grading","Fusion titles, motion graphics & VFX","Fairlight audio post-production","Delivery, codecs & workflow","Professional portfolio project")
+ }
+ val videoIds=mapOf("KineMaster" to "9BouKFVvMtc","Alight Motion" to "EH8vlQNbONQ","Node Video Editor" to "aUoYQHutvWg","Filmora PC Editor" to "7I1Xmyu0gzM","DaVinci Resolve" to "jqQF44f3NFE")
+ Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(18.dp)){
+  TextButton(onClick=onBack){Text("← All courses",color=Cyan)}
+  Text(course.level,color=Cyan,fontSize=11.sp,fontWeight=FontWeight.Bold,letterSpacing=2.sp)
+  Text(course.icon,fontSize=42.sp);Text(course.title,fontSize=29.sp,fontWeight=FontWeight.ExtraBold)
+  Text(course.subtitle,color=Muted);Spacer(Modifier.height(16.dp))
+  Surface(color=Panel,shape=RoundedCornerShape(18.dp),border=BorderStroke(1.dp,Color(0xFF29435C))){
+   Column(Modifier.padding(18.dp)){
+    Text("YOUR LEARNING PATH",color=Cyan,fontSize=11.sp,fontWeight=FontWeight.Bold,letterSpacing=2.sp)
+    Text("8 structured modules • Beginner to Pro",fontSize=18.sp,fontWeight=FontWeight.Bold)
+    Spacer(Modifier.height(10.dp))
+    LinearProgressIndicator(progress={completed.size/8f},modifier=Modifier.fillMaxWidth(),color=Cyan,trackColor=Color(0xFF263F58))
+    Text(completed.size.toString()+" of 8 modules completed",color=Muted,fontSize=12.sp)
+    stages.forEachIndexed{i,stage->
+     Row(Modifier.fillMaxWidth().clickable{
+      val videoId=videoIds[course.title]
+      if(videoId!=null) context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW,android.net.Uri.parse("https://www.youtube.com/watch?v="+videoId)))
+     }.padding(vertical=13.dp),verticalAlignment=Alignment.CenterVertically){
+      Text((i+1).toString().padStart(2,'0'),color=Cyan,fontWeight=FontWeight.Bold);Spacer(Modifier.width(14.dp))
+      Column(Modifier.weight(1f)){Text(stage,fontWeight=FontWeight.SemiBold);Text(if(videoIds.containsKey(course.title))"Open lesson video ↗" else "Study module and complete task",color=Muted,fontSize=11.sp)}
+      Icon(if(i in completed)Icons.Filled.CheckCircle else Icons.Filled.PlayCircleOutline,null,tint=if(i in completed)Teal else Cyan)
+     }
+     HorizontalDivider(color=Color(0xFF263F58))
+     Row(Modifier.fillMaxWidth().padding(vertical=4.dp),horizontalArrangement=Arrangement.End){
+      TextButton(onClick={if(i !in completed){completed=completed+i;onComplete()}}){Text(if(i in completed)"Completed ✓" else "Mark complete",color=if(i in completed)Teal else Cyan)}
+     }
+    }
+    Spacer(Modifier.height(10.dp));Text("PRACTICAL CHALLENGE",color=Cyan,fontWeight=FontWeight.Bold,fontSize=12.sp)
+    Text("Create a complete "+course.title+" project using the skills from all eight modules. Export it in the correct format and review the final quality.",color=Muted)
+   }
+  }
+ }
+}
 @Composable private fun ProgressScreen(progress:Int,email:String){Column(Modifier.fillMaxSize().padding(22.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
  Text("Your progress",fontSize=28.sp,fontWeight=FontWeight.Bold);Text("Keep showing up. Small steps add up.",color=Muted);StatCard(progress.toString()+"%","Learning activity")
  LinearProgressIndicator(progress={progress/100f},modifier=Modifier.fillMaxWidth(),color=Cyan,trackColor=Panel)
