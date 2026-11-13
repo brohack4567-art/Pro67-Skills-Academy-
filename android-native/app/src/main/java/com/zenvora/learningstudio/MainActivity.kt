@@ -1,6 +1,12 @@
 package com.zenvora.learningstudio
 
 import android.os.Bundle
+import android.view.ViewGroup
+import androidx.compose.ui.viewinterop.AndroidView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -43,7 +49,7 @@ private val courses=listOf(
  Course("Filmora PC Editor","A practical desktop editing workflow","DESKTOP","🖥️",28),
  Course("DaVinci Resolve","Professional editing, colour and finishing","PRO STUDIO","🎨",30)
 )
-class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:Bundle?){super.onCreate(savedInstanceState);setContent{ZenvoraApp()}}}
+class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:Bundle?){super.onCreate(savedInstanceState);MobileAds.initialize(this){};setContent{ZenvoraApp()}}}
 
 @Composable fun ZenvoraApp(){
  var tab by remember{mutableStateOf("Home")};var selected by remember{mutableStateOf<Course?>(null)}
@@ -62,6 +68,7 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
     tab=="Profile"->ProfileScreen(user){showAuth=true}
     else->HomeScreen(progress,{tab="Courses"},{selected=it})}
    Spacer(Modifier.weight(1f))
+   BannerAd()
    NavigationBar(containerColor=Panel,contentColor=Ink){
     listOf(Triple("Home",Icons.Filled.Home,"Home"),Triple("Courses",Icons.Filled.MenuBook,"Courses"),Triple("Progress",Icons.Filled.Insights,"Progress"),Triple("Profile",Icons.Filled.Person,"Profile")).forEach{(label,icon,dest)->
      NavigationBarItem(selected=tab==dest&&selected==null&&!showAuth,onClick={selected=null;showAuth=false;tab=dest},icon={Icon(icon,null)},label={Text(label)},colors=NavigationBarItemDefaults.colors(selectedIconColor=Cyan,indicatorColor=Color(0xFF123B4A),selectedTextColor=Cyan,unselectedTextColor=Muted))
@@ -171,4 +178,18 @@ private object SupabaseAuth{
    return Triple(false,false,json?.optString("msg")?.takeIf{it.isNotBlank()}?:json?.optString("message")?.takeIf{it.isNotBlank()}?:"Authentication failed. Check your details.")
   }
  }
+}
+
+
+@Composable private fun BannerAd(){
+ AndroidView(
+  modifier=Modifier.fillMaxWidth().height(50.dp),
+  factory={context->
+   AdView(context).apply{
+    setAdSize(AdSize.BANNER)
+    adUnitId="ca-app-pub-3940256099942544/6300978111"
+    loadAd(AdRequest.Builder().build())
+   }
+  }
+ )
 }
