@@ -1,0 +1,19 @@
+/* ZENVORA premium learning studio theme */
+:root{--z-bg:#0f172a;--z-surface:#1e293b;--z-panel:#111d2e;--z-line:#33445e;--z-cyan:#00e5ff;--z-teal:#14bba6;--z-text:#e2e8f0;--z-muted:#9fb0c6}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 8% 0%,rgba(0,229,255,.12),transparent 34%),radial-gradient(ellipse at 100% 10%,rgba(20,187,166,.10),transparent 32%),#0f172a!important;color:var(--z-text)!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+header,.nav{background:rgba(15,23,42,.92)!important;border:1px solid rgba(91,123,157,.42)!important;box-shadow:0 12px 40px rgba(0,0,0,.22);backdrop-filter:blur(18px)}
+a{transition:color .2s,border-color .2s,transform .2s}
+button{transition:all .2s}
+.container,.lesson,.modal-content,.progress-section,.course-card,.module,.ai-tutor,.real-shot,.video-learning{border-color:rgba(91,123,157,.42)!important}
+.course-card,.lesson,.modal-content,.module,.ai-tutor,.progress-section,.app,.mock{background:linear-gradient(145deg,rgba(30,41,59,.96),rgba(15,23,42,.98))!important;box-shadow:0 14px 38px rgba(0,0,0,.18)}
+h1,h2,h3,.logo,.brand{color:#f8fbff}
+.gradient-text,.category-label,.modal-category,.section-heading h2,.ai-tutor-head h3,.content h3{background:linear-gradient(90deg,#00e5ff,#14bba6);-webkit-background-clip:text;background-clip:text;color:transparent}
+button,.nav-button,.start-learning-btn,.resource-link.primary,.ai-chat-form button{background:linear-gradient(110deg,#00e5ff,#14bba6)!important;color:#061522!important;border:0!important;font-weight:800}
+.nav-links a:hover,.footer-links a:hover,.view-btn:hover{color:#00e5ff!important}
+.search-box,.search-box input,.ai-chat-form input{background:#111d2e!important;border-color:#3a506b!important;color:#e2e8f0!important}
+.course-card:hover{border-color:#00e5ff!important;box-shadow:0 18px 48px rgba(0,229,255,.10)!important}
+.progress-fill,.progress span{background:linear-gradient(90deg,#00e5ff,#14bba6)!important}
+.filter-btn.active,.filter-btn:hover{background:#00e5ff!important;color:#061522!important}
+.footer{background:#0b1220!important;border-color:#33445e!important}
+@media(max-width:700px){header{padding:22px 5%!important}.container{width:92%!important}.course-grid{grid-template-columns:1fr!important}.nav-links{background:#111d2e!important}}
