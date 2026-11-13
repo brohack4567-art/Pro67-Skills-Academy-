@@ -187,7 +187,7 @@ private object SupabaseAuth{
   factory={context->
    AdView(context).apply{
     setAdSize(AdSize.BANNER)
-    adUnitId="ca-app-pub-9279720382201715/3541169968"
+    adUnitId="ca-app-pub-9279720382201715/6334854268"
     loadAd(AdRequest.Builder().build())
    }
   }
