@@ -28,6 +28,27 @@ main{min-width:0}.welcome{min-height:188px;border:1px solid #2b4a64;border-radiu
 @media(max-width:1100px){.content-layout{grid-template-columns:205px minmax(0,1fr)}.course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.top-nav{gap:17px}.brand{min-width:190px}}
 @media(max-width:800px){.app-shell{padding:12px}.topbar{height:66px;padding:0 14px;top:6px}.top-nav{display:none}.brand{min-width:0}.content-layout{grid-template-columns:1fr}.sidebar{display:none;position:fixed;z-index:30;top:86px;left:12px;width:250px;min-height:0;max-height:calc(100vh - 100px);overflow:auto;box-shadow:0 20px 60px #0009}.sidebar.open{display:block}.mobile-menu{display:inline-grid}.welcome{padding:25px;min-height:175px}.lower-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.brand-mark{width:39px;height:39px}.brand-name{font-size:18px}.brand-tag{font-size:7px}.top-actions{gap:6px}.user-chip .user-name{display:none}.icon-btn{width:34px}.welcome{display:block;padding:23px 20px}.welcome h1{font-size:28px}.welcome-actions{margin-top:20px}.stats{grid-template-columns:1fr;gap:9px;margin:12px 0 22px}.stat{min-height:76px;padding:13px}.stat-icon{width:42px;height:42px}.course-grid{grid-template-columns:1fr}.course-card{min-height:170px}.section-head{align-items:start}.section-head h2{font-size:19px}.lower-grid{grid-template-columns:1fr}.footer{flex-direction:column}.user-chip{gap:5px}}
+
+/* Mobile header overflow fix */
+@media(max-width:560px){
+  .topbar{display:flex;justify-content:flex-start;gap:9px;padding:0 10px;overflow:visible}
+  .brand{flex:1 1 auto;min-width:0;gap:7px}
+  .brand-mark{flex:0 0 36px;width:36px;height:36px;font-size:24px}
+  .brand-name{font-size:15px;letter-spacing:.7px;white-space:nowrap}
+  .brand-tag{font-size:6px;letter-spacing:1.7px;white-space:nowrap}
+  .top-actions{flex:0 0 auto;gap:0}
+  .top-actions>.icon-btn,.top-actions>.user-chip{display:none!important}
+  .top-actions>.secondary-btn{display:inline-flex;white-space:nowrap;font-size:10px;padding:9px 10px!important;border-radius:10px}
+  .welcome h1{font-size:clamp(25px,7vw,32px);line-height:1.16}
+  .welcome h1 span[aria-hidden="true"]{display:inline-block;font-size:.7em}
+}
+@media(max-width:370px){
+  .brand-tag{display:none}
+  .brand-name{font-size:14px}
+  .topbar{gap:7px;padding:0 8px}
+  .top-actions>.secondary-btn{font-size:9px;padding:8px!important}
+}
+
 </style>
 </head>
 <body>
