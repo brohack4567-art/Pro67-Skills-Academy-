@@ -47,12 +47,16 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
 
 @Composable fun ZenvoraApp(){
  var tab by remember{mutableStateOf("Home")};var selected by remember{mutableStateOf<Course?>(null)}
- var showAuth by remember{mutableStateOf(false)};var user by remember{mutableStateOf("")};var progress by remember{mutableIntStateOf(0)}
+ val context=androidx.compose.ui.platform.LocalContext.current
+ val prefs=remember{context.getSharedPreferences("zenvora_v1",android.content.Context.MODE_PRIVATE)}
+ var showAuth by remember{mutableStateOf(false)}
+ var user by remember{mutableStateOf(prefs.getString("user_email","")?: "")}
+ var progress by remember{mutableIntStateOf(prefs.getInt("progress",0))}
  MaterialTheme(colorScheme=darkColorScheme(primary=Cyan,secondary=Teal,background=Navy,surface=Panel,onPrimary=Navy,onBackground=Ink,onSurface=Ink)){
   Surface(Modifier.fillMaxSize(),color=Navy){Column{
    TopBar{showAuth=true}
-   when{showAuth->AuthScreen({showAuth=false},{user=it;showAuth=false})
-    selected!=null->CourseScreen(selected!!,{selected=null},{progress=(progress+5).coerceAtMost(100)})
+   when{showAuth->AuthScreen({showAuth=false},{user=it;prefs.edit().putString("user_email",it).apply();showAuth=false})
+    selected!=null->CourseScreen(selected!!,{selected=null},{progress=(progress+2).coerceAtMost(100);prefs.edit().putInt("progress",(progress+2).coerceAtMost(100)).apply()})
     tab=="Courses"->CourseList{selected=it}
     tab=="Progress"->ProgressScreen(progress,user)
     tab=="Profile"->ProfileScreen(user){showAuth=true}
@@ -91,7 +95,10 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
 }}}
 @Composable private fun CourseScreen(course:Course,onBack:()->Unit,onComplete:()->Unit){
  val context=androidx.compose.ui.platform.LocalContext.current
- var completed by remember{mutableStateOf(setOf<Int>())}
+ val context=androidx.compose.ui.platform.LocalContext.current
+ val prefs=remember{context.getSharedPreferences("zenvora_v1",android.content.Context.MODE_PRIVATE)}
+ val progressKey="completed_"+course.title.replace(" ","_")
+ var completed by remember(course.title){mutableStateOf(prefs.getString(progressKey,"").orEmpty().split(",").filter{it.isNotBlank()}.mapNotNull{it.toIntOrNull()}.toSet())}
  val stages=when(course.title){
  "CapCut Editing"->listOf("Interface, projects & media","Timeline editing & precision cuts","Text, captions & typography","Transitions, effects & overlays","Audio, voiceover & sound design","Speed ramps, keyframes & tracking","Colour, export & quality control","Final short-form portfolio project")
  "KineMaster"->listOf("Workspace setup & media import","Timeline editing fundamentals","Layers, titles & chroma key","Keyframes, animation & transitions","Audio mixing & sound design","Effects, compositing & colour","Export settings & optimisation","Client-ready portfolio project")
@@ -124,7 +131,7 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
      }
      HorizontalDivider(color=Color(0xFF263F58))
      Row(Modifier.fillMaxWidth().padding(vertical=4.dp),horizontalArrangement=Arrangement.End){
-      TextButton(onClick={if(i !in completed){completed=completed+i;onComplete()}}){Text(if(i in completed)"Completed ✓" else "Mark complete",color=if(i in completed)Teal else Cyan)}
+      TextButton(onClick={if(i !in completed){completed=completed+i;prefs.edit().putString(progressKey,completed.sorted().joinToString(",")).apply();onComplete()}}){Text(if(i in completed)"Completed ✓" else "Mark complete",color=if(i in completed)Teal else Cyan)}
      }
     }
     Spacer(Modifier.height(10.dp));Text("PRACTICAL CHALLENGE",color=Cyan,fontWeight=FontWeight.Bold,fontSize=12.sp)
@@ -139,9 +146,12 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
  Text(if(progress==0)"Start your first course to build your progress." else "Great start. Continue learning to improve your progress.")
  Text("Signed in as "+email.ifBlank{"Guest"},color=Muted,fontSize=12.sp)
 }}
-@Composable private fun ProfileScreen(email:String,onLogin:()->Unit){Column(Modifier.fillMaxSize().padding(22.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
+@Composable private fun ProfileScreen(email:String,onLogin:()->Unit){val context=androidx.compose.ui.platform.LocalContext.current
+ Column(Modifier.fillMaxSize().padding(22.dp),verticalArrangement=Arrangement.spacedBy(14.dp)){
  Text("Your profile",fontSize=28.sp,fontWeight=FontWeight.Bold);Surface(color=Panel,shape=RoundedCornerShape(18.dp)){Column(Modifier.padding(18.dp)){Icon(Icons.Filled.AccountCircle,null,tint=Cyan,modifier=Modifier.size(48.dp));Text(email.ifBlank{"Guest learner"},fontWeight=FontWeight.Bold,fontSize=18.sp);Text(if(email.isBlank())"Sign in to connect your account" else "Zenvora learner",color=Muted)}}
  Button(onClick=onLogin,colors=ButtonDefaults.buttonColors(containerColor=Cyan,contentColor=Navy)){Text(if(email.isBlank())"Log in / Sign up" else "Account settings")}
+ if(email.isNotBlank()) OutlinedButton(onClick={context.getSharedPreferences("zenvora_v1",android.content.Context.MODE_PRIVATE).edit().remove("user_email").apply();onLogin()},modifier=Modifier.fillMaxWidth()){Text("Sign out",color=Cyan)}
+ Text("Your module completion and learning progress are saved on this device.",color=Muted,fontSize=11.sp)
  Text("Zenvora • Learn. Create. Earn.",color=Muted,fontSize=12.sp)
 }}
 @Composable private fun AuthScreen(onBack:()->Unit,onSignedIn:(String)->Unit){var email by remember{mutableStateOf("")};var password by remember{mutableStateOf("")};var signup by remember{mutableStateOf(false)};var busy by remember{mutableStateOf(false)};var message by remember{mutableStateOf("")};val scope= rememberCoroutineScope()
