@@ -17,3 +17,60 @@ button,.nav-button,.start-learning-btn,.resource-link.primary,.ai-chat-form butt
 .filter-btn.active,.filter-btn:hover{background:#00e5ff!important;color:#061522!important}
 .footer{background:#0b1220!important;border-color:#33445e!important}
 @media(max-width:700px){header{padding:22px 5%!important}.container{width:92%!important}.course-grid{grid-template-columns:1fr!important}.nav-links{background:#111d2e!important}}
+
+
+/* ZENVORA UI refinement — shared responsive polish */
+:root{color-scheme:dark;--z-radius:18px;--z-focus:0 0 0 3px rgba(0,229,255,.24)}
+*{scrollbar-width:thin;scrollbar-color:#34516c #0b1726}
+::selection{background:rgba(0,229,255,.28);color:#fff}
+:focus-visible{outline:2px solid var(--z-cyan)!important;outline-offset:3px}
+img,video,iframe{max-width:100%}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation}
+button:active,.primary-btn:active,.secondary-btn:active,.nav-button:active{transform:translateY(1px)}
+/* More consistent surfaces */
+.course-card,.lesson,.module,.ai-tutor,.progress-section,.modal-content,.panel,.stat,.welcome,.topbar,.sidebar{
+  border-radius:var(--z-radius)!important;
+}
+.course-card,.module,.panel,.stat,.progress-section{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.course-card:focus-visible,.side-link:focus-visible,.nav-links a:focus-visible{outline-offset:4px}
+input,select,textarea{max-width:100%}
+input:focus,select:focus,textarea:focus{box-shadow:var(--z-focus)}
+/* Keep lesson content readable on wide screens */
+.lesson,.lesson-content,.content,.modal-content{line-height:1.7}
+.lesson p,.content p{max-width:78ch}
+pre,code{overflow-wrap:anywhere;white-space:pre-wrap}
+/* Tablet and phone layout */
+@media(max-width:900px){
+  .container{width:min(100% - 32px,760px)}
+  .course-grid{gap:14px}
+  .hero{padding-top:52px}
+}
+@media(max-width:700px){
+  body{background-attachment:scroll}
+  .container{width:calc(100% - 28px)!important}
+  header,.nav{top:0}
+  .course-grid{grid-template-columns:1fr!important}
+  .course-card{min-height:0}
+  .section{padding-bottom:48px}
+  .hero h1{font-size:clamp(32px,9vw,46px);line-height:1.08}
+  .hero p{max-width:42ch}
+  .filters{overflow-x:auto;flex-wrap:nowrap;padding:2px 1px 8px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filter-btn{flex:0 0 auto}
+  .modal{padding:10px}
+  .modal-content{max-height:calc(100dvh - 20px);overflow:auto}
+  .footer-inner{align-items:flex-start}
+  .footer-links{gap:12px}
+}
+@media(max-width:420px){
+  .hero-stats{gap:16px}
+  .stat strong{font-size:21px}
+  .course-card{padding:18px}
+  .section-heading h2{font-size:23px}
+  .search-box{padding-inline:12px}
+  .modal-content{padding:20px 15px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
