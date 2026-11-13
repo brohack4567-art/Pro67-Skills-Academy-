@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 150" role="img" aria-labelledby="title desc">
+<title id="title">Zenvora Learning Platform</title><desc id="desc">A metallic Z emblem with a graduation cap and turquoise orbit, followed by the Zenvora wordmark.</desc>
+<defs>
+ <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".38" stop-color="#a9c8df"/><stop offset=".68" stop-color="#f7fbff"/><stop offset="1" stop-color="#6d8da9"/></linearGradient>
+ <linearGradient id="aqua" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00f5ff"/><stop offset="1" stop-color="#00a99b"/></linearGradient>
+ <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<g transform="translate(8 5)">
+ <path d="M13 87 Q83 8 151 81 Q181 111 145 134 Q90 165 20 116" fill="none" stroke="url(#aqua)" stroke-width="5" filter="url(#glow)"/>
+ <path d="M25 37 L82 7 L151 34 L88 57 Z" fill="url(#metal)" stroke="#eafaff" stroke-width="2"/>
+ <path d="M51 38 L112 56 L111 69 L99 75 L98 62 L51 49 Z" fill="#8daec5" stroke="#eafaff" stroke-width="1.5"/>
+ <path d="M142 34 L142 75" stroke="url(#aqua)" stroke-width="3"/><path d="M137 75 L147 75 L143 91 Z" fill="url(#aqua)"/>
+ <path d="M45 71 L137 71 L93 105 L137 105 L126 125 L31 125 L78 91 L34 91 Z" fill="url(#metal)" stroke="#eafaff" stroke-width="2"/>
+ <path d="M85 83 L117 83 L102 96 L122 96" fill="none" stroke="#00d9d8" stroke-width="4"/>
+ <path d="M16 112 Q70 157 145 113" fill="none" stroke="url(#aqua)" stroke-width="3"/>
+</g>
+<g transform="translate(185 0)">
+ <text x="0" y="91" fill="#f4f8ff" font-family="Arial, sans-serif" font-size="66" font-weight="800" letter-spacing="1.5">ZENVORA</text>
+ <path d="M2 108 H346" stroke="url(#aqua)" stroke-width="2"/>
+ <text x="4" y="135" fill="#d7e7f4" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="7">LEARNING PLATFORM</text>
+</g></svg>
