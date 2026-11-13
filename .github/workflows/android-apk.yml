@@ -1,76 +1,43 @@
-name: Build Pro67 Skills Academy APK
-
-run-name: Updated Pro67 Skills Academy Android APK
+name: Build Zenvora Native Android App
+run-name: Build Zenvora Native Android APK
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - "*.html"
-      - "backend/**"
-      - "ai-tutor.js"
-      - "scripts/**"
-      - "package.json"
-      - "capacitor.config.json"
+      - "android-native/**"
       - ".github/workflows/android-apk.yml"
 
 permissions:
   contents: read
 
 jobs:
-  build-android:
-    name: Build Android debug APK
+  build-native-android:
+    name: Compile native Kotlin Android app
     runs-on: ubuntu-latest
-    env:
-      BROHACK67_AI_ENDPOINT: ${{ vars.BROHACK67_AI_ENDPOINT }}
-      ANDROID_HOME: /usr/local/lib/android/sdk
-      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
+          distribution: temurin
           java-version: "21"
-
-      - name: Install Android SDK components
-        run: |
-          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | sort | tail -n 1)"
-          test -n "$SDKMANAGER"
-          yes | "$SDKMANAGER" --licenses
-          "$SDKMANAGER" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-
-      - name: Install Capacitor dependencies
-        run: npm install
-
-      - name: Prepare academy web assets
-        run: npm run build
-
-      - name: Generate Android project
-        run: npx cap add android
-
-      - name: Sync academy into Android project
-        run: npx cap sync android
-
-      - name: Build APK
-        run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
-
-      - name: Upload installable APK
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+      - name: Generate Gradle wrapper
+        working-directory: android-native
+        run: gradle wrapper --gradle-version 8.9
+      - name: Build native debug APK
+        working-directory: android-native
+        run: ./gradlew --no-daemon assembleDebug
+      - name: Upload native APK
         uses: actions/upload-artifact@v4
         with:
-          name: Pro67-Skills-Academy-Android-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: Zenvora-Native-Android-APK
+          path: android-native/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
