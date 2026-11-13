@@ -3,46 +3,28 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const output = path.join(root, "www");
-const pages = [
-  "index.html",
-  "courses.html",
-  "lesson.html",
-  "lesson2.html",
-  "lesson3.html",
-  "lesson4.html",
-  "lesson5.html",
-  "lesson6.html"
-];
+const liveUrl = "https://pro67-skills-academy-a14x9l.v2.appdeploy.ai/";
 
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
 
-for (const page of pages) {
-  const source = path.join(root, page);
-  if (!fs.existsSync(source)) {
-    throw new Error("Required academy page is missing: " + page);
-  }
+const fallback = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d16">
+  <title>Pro67 Skills Academy</title>
+  <meta http-equiv="refresh" content="0;url=${liveUrl}">
+</head>
+<body style="margin:0;background:#080d16;color:#eff4ff;font:16px system-ui;display:grid;min-height:100vh;place-items:center">
+  <main style="text-align:center;padding:24px">
+    <h1>Opening Pro67 Skills Academy…</h1>
+    <p><a style="color:#58d9f4" href="${liveUrl}">Tap here if the academy does not open.</a></p>
+  </main>
+  <script>location.replace(${JSON.stringify(liveUrl)});</script>
+</body>
+</html>`;
 
-  let html = fs.readFileSync(source, "utf8");
-  html = html.replaceAll("/Pro67-Skills-Academy-/courses.html", "courses.html");
-  html = html.replaceAll("/Pro67-Skills-Academy-/lesson.html", "lesson.html");
-
-  if (page.startsWith("lesson")) {
-    const scripts = [
-      '<script src="app-config.js"></script>',
-      '<script src="ai-tutor.js"></script>'
-    ].join("\n");
-    html = html.replace(/<\/body>/i, scripts + "\n</body>");
-  }
-
-  fs.writeFileSync(path.join(output, page), html, "utf8");
-}
-
-const endpoint = (process.env.BROHACK67_AI_ENDPOINT || "").trim();
-const config = "window.PRO67_CONFIG = Object.freeze({ aiEndpoint: " +
-  JSON.stringify(endpoint) + " });\n";
-fs.writeFileSync(path.join(output, "app-config.js"), config, "utf8");
-fs.copyFileSync(path.join(root, "ai-tutor.js"), path.join(output, "ai-tutor.js"));
-
-console.log("Prepared " + pages.length + " academy pages for the Android app.");
-console.log("AI tutor endpoint: " + (endpoint ? "configured" : "not configured (set BROHACK67_AI_ENDPOINT in GitHub Actions Variables)"));
+fs.writeFileSync(path.join(output, "index.html"), fallback, "utf8");
+console.log("Prepared the Android web shell for " + liveUrl);
