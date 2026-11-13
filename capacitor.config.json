@@ -4,6 +4,8 @@
   "webDir": "www",
   "bundledWebRuntime": false,
   "server": {
-    "androidScheme": "https"
+    "url": "https://pro67-skills-academy-a14x9l.v2.appdeploy.ai/",
+    "androidScheme": "https",
+    "cleartext": false
   }
 }
