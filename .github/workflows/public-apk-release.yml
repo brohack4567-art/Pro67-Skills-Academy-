@@ -1,0 +1,47 @@
+name: Publish Zenvora APK to GitHub Releases
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+      - name: Generate Gradle wrapper
+        working-directory: android-native
+        run: gradle wrapper --gradle-version 8.11.1
+      - name: Build APK
+        working-directory: android-native
+        run: ./gradlew --no-daemon assembleDebug
+      - name: Publish public GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: zenvora-v1.0.1-test
+          name: Zenvora v1.0.1 — Public Test APK
+          target_commitish: main
+          draft: false
+          prerelease: true
+          overwrite_files: true
+          body: |
+            ## Zenvora Android — Public Test Build
+
+            This is a freely downloadable **debug/test APK** built from the native Kotlin + Jetpack Compose app.
+
+            - Package: `com.zenvora.learningstudio`
+            - Version: `1.0.1` (version code 2)
+            - Minimum Android: 7.0 (API 24)
+            - Target Android: 16 (API 36)
+
+            **Important:** This is a debug-signed test build, not a production-signed release. Android may show an install warning. Install only if you trust this project. Back up app data before replacing any previous build.
+          files: android-native/app/build/outputs/apk/debug/app-debug.apk
