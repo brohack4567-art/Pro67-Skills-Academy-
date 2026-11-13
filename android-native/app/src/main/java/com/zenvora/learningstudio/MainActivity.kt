@@ -95,7 +95,6 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
 }}}
 @Composable private fun CourseScreen(course:Course,onBack:()->Unit,onComplete:()->Unit){
  val context=androidx.compose.ui.platform.LocalContext.current
- val context=androidx.compose.ui.platform.LocalContext.current
  val prefs=remember{context.getSharedPreferences("zenvora_v1",android.content.Context.MODE_PRIVATE)}
  val progressKey="completed_"+course.title.replace(" ","_")
  var completed by remember(course.title){mutableStateOf(prefs.getString(progressKey,"").orEmpty().split(",").filter{it.isNotBlank()}.mapNotNull{it.toIntOrNull()}.toSet())}
