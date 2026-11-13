@@ -1,11 +1,6 @@
 {
-  "appId": "com.brohack67.skillsacademy",
-  "appName": "Pro67 Skills Academy",
+  "appId": "com.zenvora.learningstudio",
+  "appName": "Zenvora",
   "webDir": "www",
-  "bundledWebRuntime": false,
-  "server": {
-    "url": "https://pro67-skills-academy-a14x9l.v2.appdeploy.ai/",
-    "androidScheme": "https",
-    "cleartext": false
-  }
+  "bundledWebRuntime": false
 }
