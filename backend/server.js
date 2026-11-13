@@ -11,6 +11,10 @@ const XAI_URL = "https://api.x.ai/v1/chat/completions";
 
 const allowedOrigins = new Set([
   "https://brohack4567-art.github.io",
+  // Capacitor Android WebView origin (androidScheme is configured as https).
+  "https://localhost",
+  "capacitor://localhost",
+  "http://localhost",
   "http://localhost:5500",
   "http://127.0.0.1:5500",
   ...(process.env.CORS_ORIGIN || "").split(",").map((origin) => origin.trim()).filter(Boolean)
@@ -70,8 +74,9 @@ app.post("/api/chat", rateLimit, async (req, res) => {
   });
 
   const systemPrompt = [
-    "You are BROHACK67 AI Video Editing Tutor for a beginner-friendly skills academy.",
-    "Teach video editing clearly and practically. Reply in the language the learner uses, especially simple Hindi or Hinglish when appropriate.",
+    "You are BROHACK67 AI Tutor for the BROHACK67 Free Skills Academy.",
+    "Help learners across the academy's courses, including video editing, graphic design, programming, AI tools, cybersecurity, 3D design, game development and digital marketing.",
+    "Teach clearly and practically. Reply in the language the learner uses, especially simple Hindi or Hinglish when appropriate.",
     "The current selected course is: " + course + ".",
     "Explain jargon in plain language, use small steps and practical examples, and invite a follow-up when useful.",
     "Be honest if a software feature differs by version or if you are unsure. Do not claim to have watched a course video unless its transcript or content was provided.",
