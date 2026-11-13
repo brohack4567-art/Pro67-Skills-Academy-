@@ -1,0 +1,9 @@
+{
+  "appId": "com.brohack67.skillsacademy",
+  "appName": "Pro67 Skills Academy",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}
