@@ -66,11 +66,12 @@ class MainActivity:ComponentActivity(){override fun onCreate(savedInstanceState:
     tab=="Courses"->CourseList{selected=it}
     tab=="Progress"->ProgressScreen(progress,user)
     tab=="Profile"->ProfileScreen(user){showAuth=true}
+    tab=="AI Tutor"->AiTutorScreen()
     else->HomeScreen(progress,{tab="Courses"},{selected=it})}
    Spacer(Modifier.weight(1f))
    BannerAd()
    NavigationBar(containerColor=Panel,contentColor=Ink){
-    listOf(Triple("Home",Icons.Filled.Home,"Home"),Triple("Courses",Icons.Filled.MenuBook,"Courses"),Triple("Progress",Icons.Filled.Insights,"Progress"),Triple("Profile",Icons.Filled.Person,"Profile")).forEach{(label,icon,dest)->
+    listOf(Triple("Home",Icons.Filled.Home,"Home"),Triple("Courses",Icons.Filled.MenuBook,"Courses"),Triple("AI Tutor",Icons.Filled.SmartToy,"AI Tutor"),Triple("Progress",Icons.Filled.Insights,"Progress"),Triple("Profile",Icons.Filled.Person,"Profile")).forEach{(label,icon,dest)->
      NavigationBarItem(selected=tab==dest&&selected==null&&!showAuth,onClick={selected=null;showAuth=false;tab=dest},icon={Icon(icon,null)},label={Text(label)},colors=NavigationBarItemDefaults.colors(selectedIconColor=Cyan,indicatorColor=Color(0xFF123B4A),selectedTextColor=Cyan,unselectedTextColor=Muted))
     }
    }
@@ -192,4 +193,65 @@ private object SupabaseAuth{
    }
   }
  )
+}
+
+
+private data class TutorMessage(val role:String,val content:String)
+
+@Composable private fun AiTutorScreen(){
+ val context=androidx.compose.ui.platform.LocalContext.current
+ val scope= rememberCoroutineScope()
+ var question by remember{mutableStateOf("")}
+ var busy by remember{mutableStateOf(false)}
+ var error by remember{mutableStateOf("")}
+ val messages= remember{mutableStateListOf<TutorMessage>().apply{
+  add(TutorMessage("assistant","Hi! I'm your Zenvora AI Tutor. Ask me anything about CapCut, KineMaster, Alight Motion, Node Video, Filmora or DaVinci Resolve. You can ask in English or Hinglish."))
+ }}
+ Column(Modifier.fillMaxSize().padding(horizontal=16.dp, vertical=12.dp)){
+  Text("AI TUTOR",color=Cyan,fontSize=11.sp,fontWeight=FontWeight.Bold,letterSpacing=2.sp)
+  Text("Learn with Grok",fontSize=26.sp,fontWeight=FontWeight.ExtraBold)
+  Text("Your personal creative-learning assistant",color=Muted,fontSize=12.sp)
+  Spacer(Modifier.height(12.dp))
+  LazyColumn(Modifier.weight(1f).fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(10.dp),contentPadding=PaddingValues(vertical=8.dp)){
+   items(messages){msg->
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=if(msg.role=="user")Arrangement.End else Arrangement.Start){
+     Surface(color=if(msg.role=="user")Color(0xFF123B4A) else Panel,shape=RoundedCornerShape(16.dp),border=BorderStroke(1.dp,Color(0xFF29435C)),modifier=Modifier.fillMaxWidth(0.88f)){
+      Text(msg.content,Modifier.padding(13.dp),color=Ink,fontSize=14.sp)
+     }
+    }
+   }
+   if(busy)item{Text("Grok is thinking…",color=Cyan,fontSize=12.sp)}
+  }
+  if(error.isNotBlank())Text(error,color=Color(0xFFFF8A80),fontSize=12.sp)
+  Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)){
+   OutlinedTextField(value=question,onValueChange={question=it},modifier=Modifier.weight(1f),placeholder={Text("Ask your AI tutor…")},maxLines=4,shape=RoundedCornerShape(14.dp))
+   IconButton(onClick={
+    val prompt=question.trim()
+    if(prompt.isNotEmpty()&&!busy){
+     messages.add(TutorMessage("user",prompt));question="";error="";busy=true
+     scope.launch{
+      try{
+       val answer=withContext(Dispatchers.IO){
+        val history=org.json.JSONArray()
+        messages.dropLast(1).takeLast(10).forEach{history.put(JSONObject().put("role",it.role).put("content",it.content))}
+        val body=JSONObject().put("message",prompt).put("course","Zenvora AI Tutor — video editing and creative skills").put("history",history).toString().toRequestBody("application/json".toMediaType())
+        val request=Request.Builder().url("https://brohack67-ai-tutor-production.up.railway.app/api/chat").post(body).addHeader("Content-Type","application/json").build()
+        OkHttpClient().newCall(request).execute().use{response->
+         val payload=response.body?.string().orEmpty()
+         val json=runCatching{JSONObject(payload)}.getOrNull()
+         if(!response.isSuccessful)throw IllegalStateException(json?.optString("error")?.takeIf{it.isNotBlank()}?:"AI service returned HTTP "+response.code)
+         json?.optString("reply")?.takeIf{it.isNotBlank()}?:throw IllegalStateException("AI returned an empty answer.")
+        }
+       }
+       messages.add(TutorMessage("assistant",answer))
+      }catch(e:Exception){error=e.message?: "Couldn't connect to AI Tutor. Please try again."}
+      finally{busy=false}
+     }
+    }
+   },enabled=!busy&&question.isNotBlank()){
+    Icon(Icons.Filled.Send,null,tint=Cyan)
+   }
+  }
+  Text("AI answers may need verification. Never share passwords or private information.",color=Muted,fontSize=10.sp,modifier=Modifier.padding(top=6.dp))
+ }
 }
